@@ -48,7 +48,7 @@ export class MessageToRejectComponent {
 
   rejectReceiver(userId: any, message: string): void {
     this.orgService
-      .rejectReceiver(userId, message, this.receiver.email, this.organisation)
+      .rejectReceiver(userId, )
       .subscribe({
         next: (data: any) => {
           console.log('rejectReceiverData:', data);

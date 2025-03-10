@@ -114,9 +114,9 @@ function sendingMail(
 
 app.post("/donorforminsert", async (req, res) => {
   console.log("Received request body:", req.body);
-  const { Name, Age, BloodGroup, HealthIssues ,LastDonatedDate, Mobile_number, Gender,location} = req.body;
-  if (!Name || !Age || !BloodGroup || !HealthIssues || !LastDonatedDate||!  Mobile_number ||! Gender || !location) {
-    console.log("Missing fields:", { Name, Age, BloodGroup,HealthIssues, Mobile_number, Gender,location});
+  const { Name, Age, BloodGroup, HealthIssues ,LastDonatedDate, Mobile_Number, Gender,location} = req.body;
+  if (!Name || !Age || !BloodGroup || !HealthIssues || !LastDonatedDate||!  Mobile_Number ||! Gender || !location) {
+    console.log("Missing fields:", { Name, Age, BloodGroup,HealthIssues, Mobile_Number, Gender,location});
     return res.status(400).json({ message: "Missing required fields" });
   }
   try {
@@ -129,7 +129,7 @@ app.post("/donorforminsert", async (req, res) => {
         BloodGroup,
         HealthIssues,
         LastDonatedDate,
-        Mobile_number,
+        Mobile_Number,
         Gender,
         location,     
       }

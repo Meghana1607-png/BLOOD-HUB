@@ -19,10 +19,10 @@ export class DonorserveiceService {
     console.log('Sending data to API:', donor);
     return this.http.post(this.apiUrl, donor);
   }
-  profilefetch(uid:any){
-      const res=this.supabase.from('donors').select().eq('donor_id',uid)
-    return from(res)
-    }
+  // profilefetch(uid:any){
+  //     const res=this.supabase.from('donors').select().eq('donor_id',uid)
+  //   return from(res)
+  //   }
     get auth() {
       return this.supabase.auth;
     }
@@ -40,5 +40,20 @@ export class DonorserveiceService {
         return { data: null, error: e };
       }
     }
+    async profilefetch(userId: string): Promise<any> {
+      const { data, error } = await this.supabase
+        .from('donors') 
+        .select('*')
+        .eq('user_id', userId) 
+        .limit(1)
+        .single(); 
+    
+      if (error) {
+        console.error("Error fetching donor profile:", error);
+        return null;
+      }
+      return data;
+    }
+    
     
 }

@@ -39,13 +39,12 @@ daya:any[]=[]
 
     // Fetch user details
     const data = await this.profile.profilefetch(userId);
-    if (data) {
-      this.users =this.users?.[0]; // Store as an array
-    } else {
-      this.users = []; // Ensure it's an empty array, not undefined
-    }
+    this.users = data ? [data] : []; // Ensure it's an array
+
+    console.log("Fetched Users:", this.users); // Debugging statement
   } catch (error) {
     console.error('Error fetching user:', error);
   }
 }
+
 }

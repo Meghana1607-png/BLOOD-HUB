@@ -9,7 +9,7 @@ import { DonorserveiceService } from '../donorserveice.service';
   styleUrls: ['./donor.component.css']
 })
 export class DonorComponent {
-
+user:any=null;
   donorForm: FormGroup;
   bloodGroups = ['A+', 'A-', 'B+', 'B-', 'O+', 'O-', 'AB+', 'AB-'];
 
@@ -25,12 +25,39 @@ export class DonorComponent {
       location: ['',Validators.required],
       email: ['',Validators.required],
     });
+    this.user= localStorage.getItem('authId')
+
 }
 get f() {
   return this.donorForm.controls;
 }
 
-onSubmit() {
+ async onSubmit() {
+  console.log("button clicked")
+  try {
+    // Retrieve user ID from local storage
+    const userId = localStorage.getItem('authId'); // 👈 Get stored auth ID
+
+    if (!userId) {
+      console.error("No authId found in localStorage.");
+      alert("No user ID found. Please log in again.");
+      return;
+    }
+
+    console.log("Retrieved User ID:", userId);
+
+  //   // Fetch user details from the donors table
+  //   this.user = await this.donor.profilefetch(userId); // Ensure `profilefetch` queries donors table
+
+  //   if (!this.user) {
+  //     console.error("User not found in donors table.");
+  //     alert("No donor profile found.");
+  //   } else {
+  //     console.log("Fetched User:", this.user);
+  //   }
+  // } catch (error) {
+  //   console.error("Error fetching user:", error);
+  // }
   if (this.donorForm) {
     console.log("Form Values:", this.donorForm.value);
     console.log("Form Valid:", this.donorForm.valid);
@@ -53,4 +80,8 @@ onSubmit() {
     }
     }
 }
+catch (error) {
+     console.error("Error fetching user:", error);
+   }
+ }
 }

@@ -17,11 +17,6 @@ export class ProfileService {
     this.supabase = createClient('https://esuzqpwibfnycwmeirtg.supabase.co','eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVzdXpxcHdpYmZueWN3bWVpcnRnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzQ5NjA1MTQsImV4cCI6MjA1MDUzNjUxNH0.FUL9viBXkN2Q44hhdFKPj8uKBT0SkJqcSfbjPV2oExc')
   }
 
-  //  profileinsert(data: any): Observable<any> {
-  //   console.log('Sending data to API:', data); 
-
-  //   return this.http.post(this.apiurl, data);
-  // }
   async form(userid: any): Promise<any> {
     const { data, error } = await this.supabase
       .from('users')

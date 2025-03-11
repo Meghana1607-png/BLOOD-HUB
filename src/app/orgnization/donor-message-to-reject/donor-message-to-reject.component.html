@@ -1,6 +1,5 @@
-<div class="h-dvh w-dvh flex">
-  <!-- Header -->
-
+<!-- <div class="h-dvh w-dvh flex">
+  
   <app-header-side-bar></app-header-side-bar>
   <div class="mt-16 ml-64">
     <div class="flex items-center justify-center w-full p-6">
@@ -37,4 +36,50 @@
       </div>
     </div>
   </div>
+</div> -->
+
+<!-- <div class="h-screen w-screen flex bg-gray-100">
+
+  <app-header-side-bar></app-header-side-bar>
+  <div class=" mt-40 ml-40 w-full p-6">
+    <div class="flex items-center justify-center w-full">
+      <div *ngIf="currentPath == '/org/receiver/MessageToReject'" class="w-full max-w-md p-6 bg-white rounded-lg shadow-md">
+        <textarea [(ngModel)]="message" placeholder="Enter message" class="w-full p-2 text-lg rounded-lg"></textarea>
+        <button class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition-colors duration-300" (click)="rejectDonor(message, donor.email)">Send Message</button>
+      </div>
+      <div *ngIf="currentPath == '/org/donor/MessageToReject'" class="w-full max-w-md p-6 bg-white rounded-lg shadow-md">
+        <textarea [(ngModel)]="message" placeholder="Enter mail message to send donor" class="w-full p-2 text-lg bg-gray-600 rounded-lg"></textarea>
+        <p class="text-lg text-gray-600 mb-2">{{ donor.id }}</p>
+        <button class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition-colors duration-300" (click)="rejectDonor(message, donor.email)">Send Message</button>
+      </div>
+      <div *ngIf="currentPath == '/org/donor/MessageToRequest'" class=" p-6 bg-white rounded-lg shadow-md">
+        <textarea [(ngModel)]="messageToRequest" placeholder="Enter mail message to send donor" class="h-16 p-2 text-lg bg-gray-100 rounded-lg"></textarea>
+        <button class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-700 flex ml-20 transition-colors duration-300" (click)="requestDonor(donor.id, messageToRequest, donor.email)">Send Message</button>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<div class="h-screen w-screen flex bg-gray-100">
+  <!-- Header -->
+  <app-header-side-bar></app-header-side-bar>
+  <div class="mt-40 ml-40 w-full p-6">
+    <div class="flex items-center justify-center w-full">
+      <div *ngIf="currentPath == '/org/receiver/MessageToReject'" class="w-full max-w-2xl p-6 bg-white rounded-lg shadow-md">
+        <textarea [(ngModel)]="messageToRequest" placeholder="Enter mail message to receiver to reject" class="w-full p-4 text-lg bg-gray-100 rounded-lg h-40"  style="outline: none;"></textarea>
+        <button class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-700 flex ml-64 mt-4 transition-colors duration-300" (click)="rejectDonor(message, donor.email)">Send Message</button>
+      </div>
+      <div *ngIf="currentPath == '/org/donor/MessageToReject'" class="w-full max-w-2xl p-6 bg-white rounded-lg shadow-md">
+        <textarea [(ngModel)]="messageToRequest" placeholder="Enter mail message to donor to reject" class="w-full p-4 text-lg bg-gray-100 rounded-lg h-40"  style="outline: none;"></textarea>        <p class="text-lg text-gray-600 mb-2">{{ donor.id }}</p>
+        <button class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-700 flex ml-64 mt-4 transition-colors duration-300" (click)="rejectDonor(message, donor.email)">Send Message</button>
+      </div>
+      <div *ngIf="currentPath == '/org/donor/MessageToRequest'" class="w-full max-w-2xl p-6 bg-white rounded-lg shadow-md">
+        <textarea [(ngModel)]="messageToRequest" placeholder="Enter mail message to send donor" class="w-full p-4 text-lg bg-gray-100 rounded-lg h-40"  style="outline: none;"></textarea>
+        <button class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-700 flex ml-64 mt-4 transition-colors duration-300" (click)="requestDonor(donor.id, messageToRequest, donor.email)">Send Message</button>
+      </div>
+    </div>
+  </div>
 </div>
+
+
+

@@ -1,8 +1,8 @@
-<div class="h-dvh w-dvh flex bg-gray-100">
+<div class="w-dvh flex bg-gray-100">
   <!-- Header -->
 
   <app-header-side-bar></app-header-side-bar>
-<div class="w-full mt-16 ml-64 mx-auto p-6 bg-gray-100 min-h-screen">
+<div class="mt-16 ml-64 mx-auto p-6 bg-gray-100 min-h-screen">
   <h1 class="text-2xl font-semibold text-center mb-6">Pending Donors List</h1>
 
   <div *ngIf="pendingDonor?.length; else noData" class="space-y-4">
@@ -19,16 +19,16 @@
             class="w-12 h-12 rounded-full object-cover"
           />
         </div>
-        <div>
-          <p class="text-sm text-black-600">{{ donor.email }}</p>
-          <p class="text-sm text-black-600">{{ donor.status }}</p>
+        <div class="ml-4 mr-64">
+          <p class="text-lm text-black-600">{{ donor.email }}</p>
+          <p class="text-lm text-black-600">{{ donor.status }}</p>
         </div>
       </div>
 
       <!-- View Button -->
       <button
         (click)="viewDetails(donor)"
-        class="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition"
+        class="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 transition"
       >
         View
       </button>
@@ -36,7 +36,7 @@
   </div>
 
   <ng-template #noData>
-    <p class="text-center text-gray-600">No donors found.</p>
+    <p class="text-center text-black-600">No Pending donors found.</p>
   </ng-template>
 </div>
 </div>

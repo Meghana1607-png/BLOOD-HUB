@@ -67,19 +67,5 @@ export class ReceiverFormComponent {
     }
   }
   
-
-
-// async orgdetails() : Promise<any>{
-//   try{
-//   const data2= this.orgform.fetchorgform('id')
-//   this.org=data2;
-//   console.log("fetch org ",this.org)
-//   }
-//   catch(error){
-//     console.log("failed to fetcch",error)
-//   }
-  
-//     }
-  
 }
 

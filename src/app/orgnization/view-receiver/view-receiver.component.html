@@ -1,7 +1,8 @@
-<div class="h-dvh w-dvh flex">
+<div class="h-dvh w-dvh flex ">
   <!-- Header -->
 
   <app-header-side-bar></app-header-side-bar>
+  <div class="ml-64 mt-20">
   <div class="mt-16 ml-64">
     <div class="flex items-center justify-center w-full p-6">
       <!-- Popup -->
@@ -21,32 +22,32 @@
           </h2>
 
           <div class="mt-5 mb-6 text-gray-700">
-            <p class="text-sm">
+            <p class="text-xl">
               <strong class="text-black-900">Email:</strong>
               {{ receiver.email }}
             </p>
-            <p class="text-sm">
+            <p class="text-xl">
               <strong class="text-black-900">BloodGroup Required:</strong>
               {{ receiverDetails[0].blood_group }}
             </p>
-            <p class="text-sm">
+            <p class="text-xl">
               <strong class="text-black-900">Blood Quantity:</strong>
               {{ receiverDetails[0].blood_quatity }}
             </p>
-            <p class="text-sm">
+            <p class="text-xl">
               <strong class="text-black-900">Emergency Levels:</strong>
               {{ receiverDetails[0].emergency }}
             </p>
-            <p class="text-sm">
+            <p class="text-xl">
               <strong class="text-black-900">last Date:</strong>
               {{ receiverDetails[0].date.split("T")[0] }} by
               {{ receiverDetails[0].date.split("T")[1] }}
             </p>
-            <p class="text-sm">
+            <p class="text-xl">
               <strong class="text-black-900">location:</strong>
               {{ receiverDetails[0].location }}
             </p>
-            <p class="text-sm">
+            <p class="text-xl">
               <strong class="text-black-900">purpose:</strong>
               {{ receiverDetails[0].purpose }}
             </p>
@@ -56,13 +57,13 @@
           <div class="px-8 py-6 bg-red-50 border-t border-red-300">
             <button
               (click)="acceptReceiver(receiver.id)"
-              class="bg-green-500 text-white px-3 py-1 rounded mr-2"
+              class="bg-green-500 hover:bg-green-600 text-white text-2xl p-2 rounded mr-2"
             >
               Accept
             </button>
             <button
               (click)="rejectReceiver(receiver.id)"
-              class="bg-red-500 text-white px-3 py-1 rounded"
+              class="bg-red-500 hover:bg-red-600 text-white ml-20 text-2xl p-2 rounded"
             >
               Reject
             </button>
@@ -71,4 +72,5 @@
       </div>
     </div>
   </div>
+</div>
 </div>

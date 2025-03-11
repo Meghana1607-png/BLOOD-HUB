@@ -2,20 +2,16 @@
   <!-- Header -->
 
   <app-header-side-bar></app-header-side-bar>
-  <div class="mt-16 ml-64">
-    <div class="flex items-center justify-center w-full p-6">
-      <div>
-        <textarea [(ngModel)]="message" placeholder="Enter message"></textarea>
-        <div>
-        <button
-          class="bg-red-500 text-white px-3 py-1 rounded"
+  <div  class="mt-40 ml-40 w-full p-6">
+    <div class="flex items-center justify-center w-full">
+      <div  class="w-full max-w-2xl p-6 bg-white rounded-lg shadow-md">
+        
+        <textarea [(ngModel)]="message" placeholder="Enter mail message to receiver to reject" class="w-full p-4 text-lg bg-gray-100 rounded-lg h-40"  style="outline: none;"></textarea>
+        <button class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-700 flex ml-64 mt-4 transition-colors duration-300" 
           (click)="rejectReceiver(receiver.id, message)"
         >
           Send Message
         </button>
-        </div>
-        <div >
-        </div>
       </div>
     </div>
   </div>

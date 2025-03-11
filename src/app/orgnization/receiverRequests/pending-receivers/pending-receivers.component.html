@@ -1,42 +1,44 @@
-<div class="h-dvh w-dvh flex bg-gray-100">
+<div class="w-dvh flex bg-gray-100">
   <!-- Header -->
 
   <app-header-side-bar></app-header-side-bar>
-<div class="w-full mt-16 ml-64 mx-auto p-6 bg-gray-100 min-h-screen">
-  <h1 class="text-2xl font-semibold text-center mb-6">Pending Receivers List</h1>
+  <div class="w-dvh mt-16 ml-64 mx-auto p-6 bg-gray-100 min-h-screen">
+    <h1 class="text-2xl font-semibold text-center mb-6">
+      Pending Receivers List
+    </h1>
 
-  <div *ngIf="pendingReceiver?.length; else noData" class="space-y-4">
-    <div
-      *ngFor="let receiver of pendingReceiver"
-      class="flex items-center justify-between p-4 bg-white rounded-lg shadow-md"
-    >
-      <!-- receiver Details -->
-      <div class="flex items-center">
-        <div class="flex-shrink-0 mr-4">
-          <img
-            [src]="receiver.logo || 'https://via.placeholder.com/50'"
-            alt="receiver Logo"
-            class="w-12 h-12 rounded-full object-cover"
-          />
-        </div>
-        <div>
-          <p class="text-sm text-black-600">{{ receiver.email }}</p>
-          <p class="text-sm text-black-600">{{ receiver.status }}</p>
-        </div>
-      </div>
-
-      <!-- View Button -->
-      <button
-        (click)="viewDetails(receiver)"
-        class="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition"
+    <div *ngIf="pendingReceiver?.length; else noData" class="space-y-4">
+      <div
+        *ngFor="let receiver of pendingReceiver"
+        class="flex items-center justify-between p-4 bg-white rounded-lg shadow-md"
       >
-        View
-      </button>
-    </div>
-  </div>
+        <!-- receiver Details -->
+        <div class="flex items-center">
+          <div class="flex-shrink-0 mr-4">
+            <img
+              [src]="receiver.logo || 'https://via.placeholder.com/50'"
+              alt="receiver Logo"
+              class="w-12 h-12 rounded-full object-cover"
+            />
+          </div>
+          <div class="mr-64">
+            <p class="text-lm text-black-600">{{ receiver.email }}</p>
+            <p class="text-lm text-black-600">{{ receiver.status }}</p>
+          </div>
+        </div>
 
-  <ng-template #noData>
-    <p class="text-center text-gray-600">No receivers found.</p>
-  </ng-template>
-</div>
+        <!-- View Button -->
+        <button
+          (click)="viewDetails(receiver)"
+          class="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 transition"
+        >
+          View
+        </button>
+      </div>
+    </div>
+
+    <ng-template #noData>
+      <p class="text-center text-black-600">No Pending Receivers found.</p>
+    </ng-template>
+  </div>
 </div>

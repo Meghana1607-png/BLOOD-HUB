@@ -38,7 +38,8 @@ export class OrgService {
   private rejectDonorApi = 'http://localhost:3000/org/rejectDonor';
   private requestDonorapi = 'http://localhost:3000/org/requestDonor';
   private fetchFeedbacksApi = 'http://localhost:3000/org/feedbacks';
-  private fetchIndividualFeedbacksApi = 'http://localhost:3000/org/feedbacks/individualFeedback';
+  private fetchIndividualFeedbacksApi =
+    'http://localhost:3000/org/feedbacks/individualFeedback';
   showPopup: boolean = false;
   is_slidebar: boolean = false;
   addBloodGroupModal = false;
@@ -132,8 +133,10 @@ export class OrgService {
   }
 
   fetchIndividualFeedbacks(orgId: any, donorReceiverId: any): Observable<any> {
-    console.log("donorReceiverId",donorReceiverId)
-    return this.http.get(`${this.fetchIndividualFeedbacksApi}/${orgId}/${donorReceiverId}`);
+    console.log('donorReceiverId', donorReceiverId);
+    return this.http.get(
+      `${this.fetchIndividualFeedbacksApi}/${orgId}/${donorReceiverId}`
+    );
   }
 
   fetchProfileByOrg(orgId: string): Observable<any> {
@@ -210,24 +213,27 @@ export class OrgService {
     return this.http.get(`${this.bloodGroupFetchApi}/${userId}`); // Fetch blood group data
   }
 
- 
   // addBloodGroup(bloodGroup: string, quantity: number, userId: string): Observable<any> {
   //   return this.http.put(`${this.addBloodGroupApi}/addBloodGroup/${userId}`, {
   //     bloodGroup: bloodGroup.toLowerCase(),
   //     quantity: quantity,
   //   });}
-  addBloodGroup(bloodGroup: string, quantity: number, userId: string): Observable<any> {
+  addBloodGroup(
+    bloodGroup: string,
+    quantity: number,
+    userId: string
+  ): Observable<any> {
     if (!bloodGroup || quantity <= 0) {
-      console.error("Invalid blood group or quantity");
-      return new Observable((observer) => observer.error("Invalid input"));
+      console.error('Invalid blood group or quantity');
+      return new Observable((observer) => observer.error('Invalid input'));
     }
-  
+
     console.log(
       'blood group and blood quantity in org.service',
       bloodGroup,
       quantity
     );
-    return this.http.put(`${this.addBloodGroupApi}/addBloodGroup/${userId}`, {
+    return this.http.put(`${this.addBloodGroupApi}/${userId}`, {
       bloodGroup: bloodGroup.toUpperCase(), // Convert to uppercase
       quantity: quantity,
     });
@@ -263,8 +269,11 @@ export class OrgService {
     }); // Call to backend API
   }
 
-  nodeMailer(email: any, password: any){
-    return this.http.post('http://localhost:3000/nodeMailer', {email, password});
+  nodeMailer(email: any, password: any) {
+    return this.http.post('http://localhost:3000/nodeMailer', {
+      email,
+      password,
+    });
   }
 
   updateBloodGroupQuantity(

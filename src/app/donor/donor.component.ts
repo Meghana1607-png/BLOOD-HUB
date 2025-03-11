@@ -23,7 +23,7 @@ export class DonorComponent {
       Mobile_Number: ['',Validators.required],
       Gender: ['',Validators.required],
       location: ['',Validators.required],
-
+      email: ['',Validators.required],
     });
 }
 get f() {

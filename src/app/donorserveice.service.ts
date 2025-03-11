@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { from, Observable } from 'rxjs';
 import { createClient, SupabaseClient } from '@supabase/supabase-js';
 
 
@@ -19,4 +19,26 @@ export class DonorserveiceService {
     console.log('Sending data to API:', donor);
     return this.http.post(this.apiUrl, donor);
   }
+  profilefetch(uid:any){
+      const res=this.supabase.from('donors').select().eq('donor_id',uid)
+    return from(res)
+    }
+    get auth() {
+      return this.supabase.auth;
+    }
+    async getuser() {
+      try {
+        const { data, error } = await this.supabase.auth.getUser();
+        console.log("getUser() - Supabase Response:", data);
+        if (error) {
+          console.error("Error in getUser:", error.message);
+          return { data: null, error };
+        }
+        return { data, error: null };
+      } catch (e) {
+        console.error("Exception in getUser:", e);
+        return { data: null, error: e };
+      }
+    }
+    
 }

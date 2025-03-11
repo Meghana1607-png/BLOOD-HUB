@@ -10,6 +10,7 @@ import { AwarenessComponent } from './awareness/awareness.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { DonorVieworgComponent } from './donor-vieworg/donor-vieworg.component';
 import { DonorOrglistComponent } from './donor-orglist/donor-orglist.component';
+import { ViewProfileComponent } from './view-profile/view-profile.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { DonorOrglistComponent } from './donor-orglist/donor-orglist.component';
     AwarenessComponent,
     SignUpComponent,
     DonorVieworgComponent,
-    DonorOrglistComponent
+    DonorOrglistComponent,
+    ViewProfileComponent
   ],
   imports: [
     CommonModule,

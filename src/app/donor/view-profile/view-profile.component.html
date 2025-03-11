@@ -1,0 +1,31 @@
+<div class="max-w-2xl mx-auto p-6 bg-gray-100 rounded-lg shadow-lg">
+    <h1 class="text-2xl font-semibold text-center text-red-600 mb-6">User Details</h1>
+      <div *ngIf="users.length > 0; else noUsers">
+      <div class="bg-white p-6 rounded-lg shadow-md">
+        <div *ngFor="let user of users" class="mb-6 p-4 bg-gray-50 rounded-lg shadow">
+          <div class="flex items-center space-x-4 mb-4">
+            <div class="w-14 h-14 bg-red-500 rounded-full flex items-center justify-center text-white font-bold text-lg">
+              {{ user.name[0] | uppercase }}
+            </div>
+            <h2 class="text-lg font-semibold text-red-700">{{ user[0]?.Name }}</h2>
+          </div>
+          <div class="grid gap-3">
+            <div class="bg-gray-200 p-3 rounded-md shadow-sm">
+              <span class="text-red-600 font-semibold">Email:</span> {{ user[0]?.email }}
+            </div>
+            <div class="bg-gray-200 p-3 rounded-md shadow-sm">
+              <span class="text-red-600 font-semibold">Phone:</span> {{ user[0]?.Mobile_Number }}
+            </div>
+            <div class="bg-gray-200 p-3 rounded-md shadow-sm">
+              <span class="text-red-600 font-semibold">Location:</span> {{ user[0]?.location }}
+            </div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+      <ng-template #noUsers>
+      <p class="text-center text-gray-500">No user details available.</p>
+    </ng-template>
+  </div>
+  

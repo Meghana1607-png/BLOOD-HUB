@@ -7,6 +7,7 @@ import { SignUpComponent } from './sign-up/sign-up.component';
 import { DonorComponent } from './donor.component';
 import { DonorVieworgComponent } from './donor-vieworg/donor-vieworg.component';
 import { DonorOrglistComponent } from './donor-orglist/donor-orglist.component';
+import { ViewProfileComponent } from './view-profile/view-profile.component';
 
 const routes: Routes = [
 {
@@ -18,7 +19,8 @@ const routes: Routes = [
 {path:'donor-vieworg',component:DonorVieworgComponent},
 {path:'donorOrg',component:DonorOrglistComponent},
 {path:'dsign-up',component:SignUpComponent},
-{path:'don',component:DonorComponent}
+{path:'don',component:DonorComponent},
+{path:'dvp',component:ViewProfileComponent},
 ];
 
 @NgModule({

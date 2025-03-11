@@ -33,6 +33,15 @@ export class FeedbacksComponent {
     this.fetchFeedbacks(this.organisation);
   }
 
+  navigateToFeedbackDetails(feedbacksData: any) {
+    this.router.navigate(['org/feedbacks/individualFeedback'],{
+      queryParams: {
+        id: feedbacksData.userId,
+        org_id:this.organisation.userId
+      },
+    });
+  }
+
   fetchFeedbacks(organisation: any) {
     this.orgService.fetchFeedbacks(organisation.userId).subscribe({
       next: (data: any) => {

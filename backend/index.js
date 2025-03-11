@@ -171,6 +171,36 @@ app.get("/org/feedbacks/:id", async (req, res) => {
   }
 });
 
+app.get(
+  "/org/feedbacks/individualFeedback/:id/:donorReceiverId",
+  async (req, res) => {
+    const { id } = req.params;
+    const { donorReceiverId } = req.params;
+
+    console.log("donorReceiverId", donorReceiverId);
+    try {
+      console.log("id in fetching individual feedbacks - ", id);
+      const { data, error } = await supabase
+        .from("feedback")
+        .select("*")
+        .eq("orgId", id)
+        .eq("userId", donorReceiverId);
+
+      if (error) {
+        console.log(error);
+        return res.status(400).json({ error: error.message });
+      }
+
+      console.log("data in fetching individual feedbacks - ", data);
+
+      res.json(data);
+    } catch (err) {
+      console.error("Unexpected error:", err);
+      res.status(500).json({ error: "Internal Server Error" });
+    }
+  }
+);
+
 app.post("/receiverforminsert", async (req, res) => {
   console.log(" Received Request Body:", req.body);
 
@@ -220,7 +250,8 @@ app.post("/org/requestDonor/:id", async (req, res) => {
         req.body.donorEmail,
         req.body.data.donor_id,
         message,
-        "We request you to donate blood.Because "
+        "We request you to donate blood.Because ",
+        req.body.donorName
       );
       res.status(200).json({
         message: "request submitted successfully",
@@ -255,6 +286,27 @@ app.post("/orgSignIn", async (req, res) => {
     console.error("sign in failed", error);
     res.status(500).json({ message: error.message });
   }
+});
+
+app.post("/nodeMailer", async (req, res) => {
+  const { email, password } = req.body;
+  const transporter = nodemailer.createTransport({
+    service: "gmail",
+    secure: false,
+    auth: {
+      user: email,
+      pass: password,
+    },
+  });
+
+  transporter.verify((error) => {
+    if (error) {
+      res.status(500).json({ message: "Invalid email or password" });
+    } else {
+      console.log("NodeMailer authentication successful");
+      res.json({ message: "Authentication successful" });
+    }
+  });
 });
 
 app.post("/orgSignUp", async (req, res) => {
@@ -821,7 +873,8 @@ app.put("/org/rejectReceiver/:id", async (req, res) => {
       req.body.receiverEmail,
       id,
       message,
-      "Blood request rejected.."
+      "Blood request rejected..",
+      req.body.receiverName
     );
 
     const { data: updatedData, error: updateError } = await supabase
@@ -868,7 +921,8 @@ app.put("/org/rejectDonor/:id", async (req, res) => {
       donorEmail,
       id,
       message,
-      "Donation Request Rejected.Here is the reason.."
+      "Donation Request Rejected.Here is the reason..",
+      req.body.donorName
     );
 
     const { data: updatedData, error: updateError } = await supabase
@@ -995,7 +1049,8 @@ app.put("/org/acceptDonor/:id", async (req, res) => {
       req.body.donor.email,
       req.body.donor.id,
       message,
-      ""
+      "",
+      req.body.donorName
     );
 
     const { data: updatedData, error: updateError } = await supabase

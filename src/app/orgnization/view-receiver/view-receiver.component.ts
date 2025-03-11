@@ -72,6 +72,7 @@ export class ViewReceiverComponent {
       queryParams: {
         userid: userId,
         email: this.receiver.email,
+        name: this.receiverDetails[0].name,
       },
     });
   }

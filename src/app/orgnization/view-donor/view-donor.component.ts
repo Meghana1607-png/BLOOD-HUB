@@ -86,6 +86,7 @@ export class ViewDonorComponent {
       queryParams: {
         userid: userId,
         email: this.donor.email,
+        donorName: this.donorDetails[0].Name,
       },
     });
   }
@@ -115,6 +116,7 @@ export class ViewDonorComponent {
         userid: userId,
         email: this.donor.email,
         dataToSend: dataToSendJson,
+        donorName: this.donorDetails[0].Name,
       },
     });
   }
@@ -169,7 +171,12 @@ export class ViewDonorComponent {
               .subscribe({
                 next: (data: any) => {
                   this.orgService
-                    .acceptDonor(userId, this.donor, this.organisation)
+                    .acceptDonor(
+                      userId,
+                      this.donor,
+                      this.organisation,
+                      this.donorDetails[0].Name
+                    )
                     .subscribe({
                       next: (data: any) => {
                         this.acceptDonorData = data;
@@ -202,7 +209,12 @@ export class ViewDonorComponent {
               .subscribe({
                 next: (data: any) => {
                   this.orgService
-                    .acceptDonor(userId, this.donor, this.organisation)
+                    .acceptDonor(
+                      userId,
+                      this.donor,
+                      this.organisation,
+                      this.donorDetails[0].Name
+                    )
                     .subscribe({
                       next: (data: any) => {
                         this.acceptDonorData = data;

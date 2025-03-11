@@ -34,6 +34,7 @@ export class MessageToRejectComponent {
       this.receiver = {
         id: params['userid'],
         email: params['email'],
+        name: params['name'],
       };
     });
   }
@@ -41,14 +42,22 @@ export class MessageToRejectComponent {
   receiver: {
     id: any;
     email: any;
+    name: any;
   } = {
     id: '',
     email: '',
+    name: '',
   };
 
   rejectReceiver(userId: any, message: string): void {
     this.orgService
-      .rejectReceiver(userId, )
+      .rejectReceiver(
+        userId,
+        message,
+        this.receiver.email,
+        this.organisation,
+        this.receiver.name
+      )
       .subscribe({
         next: (data: any) => {
           console.log('rejectReceiverData:', data);

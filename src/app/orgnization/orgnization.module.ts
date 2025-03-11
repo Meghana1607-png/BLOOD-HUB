@@ -24,6 +24,7 @@ import { HeaderSideBarComponent } from './header-side-bar/header-side-bar.compon
 import { MessageToRejectComponent } from './message-to-reject/message-to-reject.component';
 import { DonorMessageToRejectComponent } from './donor-message-to-reject/donor-message-to-reject.component';
 import { FeedbacksComponent } from './feedbacks/feedbacks.component';
+import { IndividualFeedbackComponent } from './individual-feedback/individual-feedback.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { FeedbacksComponent } from './feedbacks/feedbacks.component';
     MessageToRejectComponent,
     DonorMessageToRejectComponent,
     FeedbacksComponent,
+    IndividualFeedbackComponent,
   ],
   imports: [
     CommonModule,

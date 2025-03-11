@@ -1,148 +1,43 @@
-<!-- <div class="h-dvh w-dvh flex">
+
+<div class="h-dvh w-dvh flex bg-gray-100">
+  <!-- Header -->
   <app-header-side-bar></app-header-side-bar>
-
-  <div class="container mx-auto p-4">
-    <h2 class="text-2xl font-bold mb-4">Feedbacks</h2>
-    <div class="flex flex-col">
-      <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
-        <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
-          <div class="overflow-hidden">
-            <table class="min-w-full divide-y divide-gray-200">
-              <thead class="bg-gray-50">
-                <tr>
-                  <th
-                    scope="col"
-                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                  >
-                    Donor/Receiver Email
-                  </th>
-                  <th
-                    scope="col"
-                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                  >
-                    Feedback Message
-                  </th>
-                  <th
-                    scope="col"
-                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                  >
-                    Created At
-                  </th>
-                </tr>
-              </thead>
-              <tbody class="bg-white divide-y divide-gray-200">
-                <tr *ngFor="let feedback of feedbacksData">
-                  <td
-                    class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
-                  >
-                    {{ feedback.donorReceiverEmail }}
-                  </td>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                    {{ feedback.feedbackMessage }}
-                  </td>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                    {{ feedback.created_at | date }}
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+  <div class="w-full mt-16 ml-64 mx-auto p-6 bg-gray-100 min-h-screen">
+    <h1 class="text-3xl font-bold text-center mb-6">Feedbacks</h1>
+    <div *ngIf="feedbacksData?.length; else noData" class="space-y-4">
+      <div
+        *ngFor="let feedback of feedbacksData"
+        class="flex items-center justify-between p-4 bg-white rounded-lg shadow-md hover:shadow-lg"
+        (click)="navigateToFeedbackDetails(feedback)"
+      >
+       <div class="flex items-center">
+          <div class="flex-shrink-0 mr-4">
+            <img
+              [src]="feedback.logo || 'https://via.placeholder.com/50'"
+              alt="Donor/Receiver Logo"
+              class="w-12 h-12 rounded-full object-cover"
+            />
+          </div>
+          <div>
+            <p class="text-lg text-black-600 font-bold">{{ feedback.name }}</p>
+            <p class="text-sm text-black-600">
+              {{ feedback.donorReceiverEmail }}
+            </p>
+            <p class="text-m text-black-600">{{ feedback.feedbackMessage }}</p>
           </div>
         </div>
-      </div>
-    </div>
-  </div>
-</div> -->
-
-<!-- <div class="container mx-auto p-4 bg-red-100">
-  <h2 class="text-2xl font-bold mb-4 text-red-600">Feedbacks</h2>
-  <div class="flex flex-col">
-    <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
-      <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
-        <div class="overflow-hidden">
-          <table class="min-w-full divide-y divide-red-300">
-            <thead class="bg-red-200">
-              <tr>
-                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-red-600 uppercase tracking-wider">Donor/Receiver Email</th>
-                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-red-600 uppercase tracking-wider">Feedback Message</th>
-                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-red-600 uppercase tracking-wider">Created At</th>
-              </tr>
-            </thead>
-            <tbody class="bg-red-100 divide-y divide-red-300">
-              <tr *ngFor="let feedback of feedbacksData">
-                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-red-600">{{ feedback.donorReceiverEmail }}</td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm text-red-600">{{ feedback.feedbackMessage }}</td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm text-red-600">{{ feedback.created_at | date }}</td>
-              </tr>
-            </tbody>
-          </table>
+        <div>
+          <p class="text-sm text-black-600">{{ feedback.created_at | date }}</p>
         </div>
       </div>
     </div>
-  </div>
-</div>
- -->
-
-<div class="container mx-auto p-4 bg-red-100">
-  <div class="flex flex-row">
-    <div class="w-1/4 bg-red-200 p-4 rounded-lg">
-      <h2 class="text-lg font-bold mb-4 text-red-600">Profile</h2>
-      <p class="text-sm text-red-600">Name: {{ organisation.name }}</p>
-      <p class="text-sm text-red-600">Email: {{ organisation.email }}</p>
-      <p class="text-sm text-red-600">Phone: {{ organisation.phone }}</p>
-    </div>
-    <div class="w-3/4 ml-4 bg-red-100 p-4 rounded-lg">
-      <h2 class="text-2xl font-bold mb-4 text-red-600">Feedbacks</h2>
-      <div class="flex flex-col">
-        <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
-          <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
-            <div class="overflow-hidden">
-              <table class="min-w-full divide-y divide-red-300">
-                <thead class="bg-red-200">
-                  <tr>
-                    <th
-                      scope="col"
-                      class="px-6 py-3 text-left text-xs font-medium text-red-600 uppercase tracking-wider"
-                    >
-                      Donor/Receiver Email
-                    </th>
-                    <th
-                      scope="col"
-                      class="px-6 py-3 text-left text-xs font-medium text-red-600 uppercase tracking-wider"
-                    >
-                      Feedback Message
-                    </th>
-                    <th
-                      scope="col"
-                      class="px-6 py-3 text-left text-xs font-medium text-red-600 uppercase tracking-wider"
-                    >
-                      Created At
-                    </th>
-                  </tr>
-                </thead>
-                <tbody class="bg-red-100 divide-y divide-red-300">
-                  <tr *ngFor="let feedback of feedbacksData">
-                    <td
-                      class="px-6 py-4 whitespace-nowrap text-sm font-medium text-red-600"
-                    >
-                      {{ feedback.donorReceiverEmail }}
-                    </td>
-                    <td
-                      class="px-6 py-4 whitespace-nowrap text-sm text-red-600"
-                    >
-                      {{ feedback.feedbackMessage }}
-                    </td>
-                    <td
-                      class="px-6 py-4 whitespace-nowrap text-sm text-red-600"
-                    >
-                      {{ feedback.created_at | date }}
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
+    <ng-template #noData>
+      <div class="text-center p-4 bg-gray-200 rounded-lg shadow-md">
+        <p class="text-lg text-gray-600 font-bold">No feedbacks found.</p>
+        <p class="text-sm text-gray-600">
+          It looks like there are no feedbacks to display.
+        </p>
       </div>
-    </div>
+    </ng-template>
   </div>
 </div>

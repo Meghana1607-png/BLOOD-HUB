@@ -1,49 +1,71 @@
-<div class="max-w-md mx-auto bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+<div class="max-w-md mx-auto bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 border-2 border-gray-100">
   <h2 class="text-2xl font-bold mb-4 text-center text-red-600">Patient Details</h2>
   <form [formGroup]="patientForm" (ngSubmit)="onSubmit()">
-    
+    <div class="mb-4">
+      <label class="block text-gray-700 text-sm font-bold mb-2" for="name"> Name </label>
+      <input
+        type="text"
+        id="name"
+        formControlName="name"
+        placeholder="Enter the name"
+        class="shadow appearance-none border-2 border-red-200 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+      />
+      <p *ngIf="f?.['name']?.touched && f?.['name']?.invalid" class="text-red-5200 text-xs italic">
+        Name is required.
+      </p>
+    </div>
+
     <!-- Last Date to Receive Blood -->
     <div class="mb-4">
-      <label class="block text-gray-700 text-sm font-bold mb-2" for="date">
-        Last Date to Receive Blood
-      </label>
+      <label class="block text-gray-700 text-sm font-bold mb-2" for="date"> Last Date to Receive Blood </label>
       <input
         type="date"
         id="date"
         formControlName="date"
-        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+        class="shadow appearance-none border-2 border-red-200 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
       />
-      <p *ngIf="f?.['date']?.touched && f?.['date']?.invalid" class="text-red-500 text-xs italic">
+      <p *ngIf="f?.['date']?.touched && f?.['date']?.invalid" class="text-red-200 text-xs italic">
         Last Date is required.
       </p>
     </div>
 
     <!-- Purpose -->
     <div class="mb-4">
-      <label class="block text-gray-700 text-sm font-bold mb-2" for="purpose">
-        Purpose
-      </label>
+      <label class="block text-gray-700 text-sm font-bold mb-2" for="purpose"> Purpose </label>
       <input
         type="text"
         id="purpose"
         formControlName="purpose"
         placeholder="Reason for blood"
-        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+        class="shadow appearance-none border-2 border-red-200 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
       />
-      <p *ngIf="f?.['purpose']?.touched && f?.['purpose']?.invalid" class="text-red-500 text-xs italic">
+      <p *ngIf="f?.['purpose']?.touched && f?.['purpose']?.invalid" class="text-red-200 text-xs italic">
         Purpose is required.
+      </p>
+    </div>
+
+    <!-- Location -->
+    <div class="mb-4">
+      <label class="block text-gray-700 text-sm font-bold mb-2" for="location"> Location </label>
+      <input
+        type="text"
+        id="location"
+        formControlName="location"
+        placeholder="Address"
+        class="shadow appearance-none border-2 border-red-200 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+      />
+      <p *ngIf="f?.['location']?.touched && f?.['location']?.invalid" class="text-red-200 text-xs italic">
+        Location is required.
       </p>
     </div>
 
     <!-- Blood Group -->
     <div class="mb-4">
-      <label class="block text-gray-700 text-sm font-bold mb-2" for="blood_group">
-        Blood Group
-      </label>
+      <label class="block text-gray-700 text-sm font-bold mb-2" for="blood_group"> Blood Group </label>
       <select
         id="blood_group"
         formControlName="blood_group"
-        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+        class="shadow appearance-none border-2 border-red-200 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
       >
         <option value="">Select Blood Group</option>
         <option value="A+">A+</option>
@@ -55,37 +77,35 @@
         <option value="AB+">AB+</option>
         <option value="AB-">AB-</option>
       </select>
-      <p *ngIf="f?.['blood_group']?.touched && f?.['blood_group']?.invalid" class="text-red-500 text-xs italic">
+      <p *ngIf="f?.['blood_group']?.touched && f?.['blood_group']?.invalid" class="text-red-200 text-xs italic">
         Blood Group is required.
       </p>
     </div>
 
     <!-- Blood Quantity Required -->
     <div class="mb-4">
-      <label class="block text-gray-700 text-sm font-bold mb-2" for="blood_quatity">
+      <label class="block text-gray-700 text-sm font-bold mb-2" for="blood_quantity">
         Blood Quantity Required (ml)
       </label>
       <input
         type="number"
-        id="blood_quatity"
-        formControlName="blood_quatity"
-        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+        id="blood_quantity"
+        formControlName="blood_quantity"
+        class="shadow appearance-none border-2 border-red-200 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
         placeholder="Enter quantity in ml"
       />
-      <p *ngIf="f?.['blood_quatity']?.touched && f?.['blood_quatity']?.invalid" class="text-red-500 text-xs italic">
+      <p *ngIf="f?.['blood_quantity']?.touched && f?.['blood_quantity']?.invalid" class="text-red-200 text-xs italic">
         Valid Blood Quantity is required.
       </p>
     </div>
 
     <!-- Emergency Level -->
     <div class="mb-4">
-      <label class="block text-gray-700 text-sm font-bold mb-2" for="emergency">
-        Emergency Level
-      </label>
+      <label class="block text-gray-700 text-sm font-bold mb-2" for="emergency"> Emergency Level </label>
       <select
         id="emergency"
         formControlName="emergency"
-        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+        class="shadow appearance-none border-2 border-red-200 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
       >
         <option value="">Select Emergency Level</option>
         <option value="low">Low</option>
@@ -93,7 +113,7 @@
         <option value="high">High</option>
         <option value="critical">Critical</option>
       </select>
-      <p *ngIf="f?.['emergency']?.touched && f?.['emergency']?.invalid" class="text-red-500 text-xs italic">
+      <p *ngIf="f?.['emergency']?.touched && f?.['emergency']?.invalid" class="text-red-200 text-xs italic">
         Emergency Level is required.
       </p>
     </div>

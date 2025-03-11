@@ -1,5 +1,4 @@
 
-
 <div class="max-w-md mx-auto bg-white p-6 rounded-2xl shadow-md border-2 border-red-500">
   <h2 class="text-2xl font-bold text-red-600 text-center mb-4">Donor Form</h2>
   <form [formGroup]="donorForm" (ngSubmit)="onSubmit()" class="max-w-md mx-auto p-2 rounded-lg mt-6">
@@ -8,12 +7,24 @@
       <input type="text" formControlName="Name" class="w-full p-2 border border-red-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500">
     </div>
     <div class="mb-4">
-      
+      <label class="block text-red-700 font-medium">email</label>
+      <input type="text" formControlName="email" class="w-full p-2 border border-red-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500">
+    </div>
+    <div class="mb-4">    
       <label class="block text-red-700 font-medium">Age</label>
       <input type="number" formControlName="Age" class="w-full p-2 border border-red-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500">
     </div>
     <div class="mb-4">
-      <label class="block text-red-700 font-medium">BloodGroup</label>
+      <label class="block text-red-700 font-medium">Gender</label>
+      <select formControlName="Gender" class="w-full p-2 border border-red-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500">
+        <option value="">Select Gender</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+        <option value="Other">Other</option>
+      </select>
+    </div>
+    <div class="mb-4">
+      <label class="block text-red-700 font-medium">Blood Group</label>
       <select formControlName="BloodGroup" class="w-full p-2 border border-red-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500">
         <option value="">Select Blood Group</option>
         <option value="A+">A+</option>
@@ -26,15 +37,23 @@
         <option value="AB-">AB-</option>
       </select>
     </div>
-    <!-- <div class="mb-4">
-      <label class="block text-red-700 font-medium">LastDonatedDate</label>
-      <input type="date" formControlName="LastDonatedDate" class="w-full p-2 border border-red-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500">
-    </div> -->
     <div class="mb-4">
-      <label class="block text-red-700 font-medium">HealthIssues</label>
+      <label class="block text-red-700 font-medium">Phone Number</label>
+      <input type="tel" formControlName="Mobile_Number" class="w-full p-2 border border-red-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500">
+    </div>
+    <div class="mb-4">
+      <label class="block text-red-700 font-medium">Location</label>
+      <input type="text" formControlName="location" class="w-full p-2 border border-red-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500" placeholder="Enter your city or area">
+    </div>
+    <div class="mb-4">
+      <label class="block text-red-700 font-medium">Last Donated Date</label>
+      <input type="date" formControlName="LastDonatedDate" class="w-full p-2 border border-red-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500">
+    </div>
+    <div class="mb-4">
+      <label class="block text-red-700 font-medium">Health Issues</label>
       <textarea formControlName="HealthIssues" class="w-full p-2 border border-red-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500" rows="3"></textarea>
     </div>
     <button type="submit" class="w-full bg-red-600 text-white font-bold py-2 rounded-md hover:bg-red-700"
-    routerLink="/org-list">Submit</button>
+    routerLink="/donorOrg">Submit</button>
   </form>
 </div>

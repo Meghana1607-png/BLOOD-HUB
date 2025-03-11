@@ -20,7 +20,7 @@ export class ProfileComponent {
       // gender: ['', Validators.required],
       phno: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]],
       address: ['', Validators.required],
-      age: ['', Validators.required],
+      // age: ['', Validators.required],
       name: ['', Validators.required],
 
     });
@@ -28,42 +28,6 @@ export class ProfileComponent {
   }
 
 
-  // async submitForm() {
-  //   if (this.receiverForm.valid) {
-  //     console.log("Form is valid");
-  
-  //     // Fetch authid from Supabase
-  //     const { data, error } = await this.profile.getUser();
-  
-  //     if (error || !data || !data.user) {
-  //       console.error("User not authenticated or fetch error:", error);
-  //       alert("User not authenticated. Please log in.");
-  //       return;
-  //     }
-  
-  //     console.log("Fetched User ID (authid):", data.user.id);
-  
-  //     const userFormData = {
-  //       userid: data.user.id,
-  //       ...this.receiverForm.value
-  //     };
-  //     console.log("Sending data:", userFormData);
-  
-  //     this.profile.profileinsert(userFormData).subscribe({
-  //       next: (response) => {
-  //         console.log("API Response:", response);
-  //         alert(response.message);
-  //         this.receiverForm.reset();
-  //       },
-  //       error: (error) => {
-  //         console.error("Error:", error);
-  //         alert("An error occurred.");
-  //       }
-  //     });
-  //   } else {
-  //     alert("Please fill out all required fields.");
-  //   }
-  // }
   async ngOnInit(){
     this.fetchUserProfile()
   }
@@ -72,8 +36,7 @@ export class ProfileComponent {
       if (!result || !result.data || !result.data.session || !result.data.session.user) {
         console.error("No active session found:", result?.error);
         return;
-      }
-      
+      } 
       const userId = result.data.session.user.id;
       this.profile.profilefetch(userId).subscribe({
         next: (res: any) => {
@@ -81,7 +44,7 @@ export class ProfileComponent {
             console.warn("No profile data found.");
             return;
           }
-          this.profileData = res.data[0]; // ✅ Store profile data
+          this.profileData = res.data[0]; 
           console.log("Fetched Profile Data:", this.profileData);
         },
         error: (err) => {
@@ -102,7 +65,7 @@ export class ProfileComponent {
         alert("No active session. Please log in again.");
         return;
       }
-      const userId = sessionData.session.user.id; // ✅ Extract User ID Correctly
+      const userId = sessionData.session.user.id;
       console.log("Fetched User ID (authid):", userId);
         const userFormData = {
         userid: userId,

@@ -7,6 +7,7 @@ import { ReceiverFormComponent } from './receiver-form/receiver-form.component';
 import { RecAwarenessComponent } from './rec-awareness/rec-awareness.component';
 import { ViewProfileComponent } from './view-profile/view-profile.component';
 import { RecRequestsComponent } from './rec-requests/rec-requests.component';
+import { VeiwRecFormComponent } from './veiw-rec-form/veiw-rec-form.component';
 
 const routes: Routes = [{ path: '', component: ReceiverComponent },
 {
@@ -22,9 +23,10 @@ const routes: Routes = [{ path: '', component: ReceiverComponent },
 
   component: ReceiverFormComponent
 },
-{path:'view-profile',component:ViewProfileComponent},
+{path:'vp',component:ViewProfileComponent},
 { path: 'rec-awareness', component: RecAwarenessComponent },
-{path:'rec-req',component:RecRequestsComponent}
+{path:'rec-req',component:RecRequestsComponent},
+{path:'view-rec',component:VeiwRecFormComponent}
 
 ];
 

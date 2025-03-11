@@ -22,15 +22,22 @@ export class ProfileService {
 
   //   return this.http.post(this.apiurl, data);
   // }
-  async form(): Promise<any> {
-    const { data, error } = await this.supabase.from('users').select('*');
+  async form(userid: any): Promise<any> {
+    const { data, error } = await this.supabase
+      .from('users')
+      .select('*')
+      .eq('userid', userid) 
+      .single();
+  
     if (error) {
-      console.error('Error fetching users:', error.message);
+      console.error('Error fetching user:', error.message);
       return null;
     }
-    console.log('Fetched users:', data);
+  
+    console.log('Fetched user:', data);
     return data;
   }
+  
   // setAuthId(authId: string) {
   //   localStorage.setItem('authId', authId);
   //   console.log('setitem',authId)
@@ -39,7 +46,10 @@ export class ProfileService {
     const res=this.supabase.from('users').select().eq('userid',uid)
   return from(res)
   }
-
+  get auth() {
+    return this.supabase.auth;
+  }
+  
   profileinsert(userFormData: any): Observable<any> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     return this.http.post(this.apiurl, userFormData, { headers });

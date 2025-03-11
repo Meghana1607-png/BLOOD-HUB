@@ -10,6 +10,8 @@ import { ReceiverFormComponent } from './receiver-form/receiver-form.component';
 import { RecAwarenessComponent } from './rec-awareness/rec-awareness.component';
 import { ViewProfileComponent } from './view-profile/view-profile.component';
 import { RecRequestsComponent } from './rec-requests/rec-requests.component';
+import { VeiwRecFormComponent } from './veiw-rec-form/veiw-rec-form.component';
+import { HeaderComponent } from './header/header.component';
 
 
 @NgModule({
@@ -20,7 +22,9 @@ import { RecRequestsComponent } from './rec-requests/rec-requests.component';
     ReceiverFormComponent,
     RecAwarenessComponent,
     ViewProfileComponent,
-    RecRequestsComponent
+    RecRequestsComponent,
+    VeiwRecFormComponent,
+    HeaderComponent
   ],
   imports: [
     CommonModule,

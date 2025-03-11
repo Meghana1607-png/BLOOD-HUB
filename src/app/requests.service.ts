@@ -52,26 +52,29 @@ export class RequestsService {
   //       });
   //   });
   // }
+  get auth() {
+    return this.supabase.auth;
+  }
 
-  
   submitRequest(requestData: any): Observable<any> {
-    console.log('Submitting request with data:', requestData); // Debugging
+    console.log('Submitting request with data:', requestData); 
+  
     return new Observable(observer => {
       this.supabase
         .from('request')
         .insert([requestData])
         .then(({ data, error }) => {
           if (error) {
-            console.error('Supabase Error:', error);
+            console.error('Supabase Error:', error.details, error.message);
             observer.error(error.message);
           } else {
             observer.next(data);
             observer.complete();
           }
-        })
-        // .catch(err => observer.error(err));
+        });
     });
   }
+  
   
 
   async createRequest1(requestData: any) {

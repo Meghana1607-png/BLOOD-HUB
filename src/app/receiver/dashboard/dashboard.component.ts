@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { filter } from 'rxjs';
+import { ReceiverService } from 'src/app/receiver.service';
 
 
 @Component({
@@ -22,15 +24,21 @@ export class DashboardComponent {
     { path: 'receiver/rec-awareness', label: 'awareness', icon: 'pi pi-sitemap' },
     { path: 'receiver/rprofile', label: 'profile', icon: 'pi pi-user-plus' },
     // { path: 'admin/teams-table', label: 'teams', icon: 'pi pi-users' },
-    // { path: 'admin/create-org', label: 'organisation', icon: 'pi pi-globe' },
-    // { path: 'admin/profile', label: 'profile', icon: 'pi pi-id-card' },
+    { path: 'receiver/view-rec', label: 'viewrecform', icon: 'pi pi-globe' },
+    { path: 'receiver/vp', label: 'view-profile', icon: 'pi pi-id-card' },
   ]
 
-  constructor(private router: Router, private activeroute: ActivatedRoute ) {
+  constructor(private router: Router, private activeroute: ActivatedRoute, private recform:ReceiverService ) {
     this.is_slidebar = false;
     // this.roles = this.activeroute.snapshot.queryParams['roles']
     // console.log(this.roles)
     // this.c_role = this.activeroute.snapshot.queryParams['currentrole']
+    this.router.events.pipe(
+      filter(event => event instanceof NavigationEnd)
+    ).subscribe((event: any) => {
+      const currentRoute = this.menu.find(item => event.url.includes(item.path));
+      this.selectedPage = currentRoute ? currentRoute.label : 'Dashboard';
+    });
   }
   ngOnInit(): void {
     // this.fetchuser();
@@ -63,24 +71,22 @@ export class DashboardComponent {
   }
 
   selectRole(role: string) {
-    console.log(`Selected role: ${role}`);
-
-    // Handle role selection logic here
+    console.log(`Selected role: ${role}`);// Handle role selection logic here
 
     this.showDropdown = false; 
-    // Close dropdown after selection
+// Close dropdown after selection
   }
-  // fetchuser(){
-  //   console.log('called')
-  //  const id= localStorage.getItem('userid');
-  //  console.log(id)
-    // this.supabase.fetchuserdet(id).subscribe((res)=>
-    // {
-    //   console.log(res)
-    //   this.det=res.data[0];
-    //   console.log(this.det)
-    // });
-  // }
-
+fun(){
+const recid=  this.recform.recfetch('').subscribe({
+    next: (data) => {
+      if (data) {
+        this.router.navigate(['/view-rec', data]); 
+      } else {
+        this.router.navigate(['/rec-form']); 
+      }
+    },
+    error: () => this.router.navigate(['/rec-form']),
+  });
+}
 }
 

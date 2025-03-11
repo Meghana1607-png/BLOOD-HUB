@@ -3,25 +3,39 @@
     <form [formGroup]="signinForm">
       <div dir="ltr">
         <h1 class="text-center text-red-600 font-bold text-xl">SIGN IN</h1>
-        <div class=" pt-6">
-          <label class="text-gray-700 font-semibold">Username:</label><br />
-          <input class="border-gray-300 w-full p-2 rounded-md" type="text" placeholder="Enter username" formControlName="username">
+        <div class="pt-6">
+          <label class="text-red-700 font-semibold">Username:</label><br />
+          <input 
+            class="border border-red-300 w-full p-2 rounded-md focus:border-red-500 focus:ring focus:ring-red-300 outline-none transition-all duration-300" 
+            type="text" 
+            placeholder="Enter username" 
+            formControlName="username">
           <div *ngIf="signinForm.controls['username'].invalid && signinForm.controls['username'].touched">
             <div class="text-red-600 text-sm" *ngIf="signinForm.controls['username'].errors?.['required']">
               Username is required
             </div>
           </div>
           <br/>
-          <label class="text-gray-700 font-semibold">Email:</label><br />
-          <input class="border-gray-300 w-full p-2 rounded-md" type="email" placeholder="Enter email" formControlName="email">
+
+          <label class="text-red-700 font-semibold">Email:</label><br />
+          <input 
+            class="border border-red-300 w-full p-2 rounded-md focus:border-red-500 focus:ring focus:ring-red-300 outline-none transition-all duration-300" 
+            type="email" 
+            placeholder="Enter email" 
+            formControlName="email">
           <div *ngIf="signinForm.controls['email'].invalid && signinForm.controls['email'].touched">
             <div class="text-red-600 text-sm" *ngIf="signinForm.controls['email'].errors?.['required']">
               Email is required
             </div>
           </div>
           <br/>
-          <label class="text-gray-700 font-semibold">Password:</label><br />
-          <input class="border-gray-300 w-full p-2 rounded-md" type="password" placeholder="Enter password" formControlName="password">
+
+          <label class="text-red-700 font-semibold">Password:</label><br />
+          <input 
+            class="border border-red-300 w-full p-2 rounded-md focus:border-red-500 focus:ring focus:ring-red-300 outline-none transition-all duration-300" 
+            type="password" 
+            placeholder="Enter password" 
+            formControlName="password">
           <div *ngIf="signinForm.controls['password'].invalid && signinForm.controls['password'].touched">
             <div class="text-red-600 text-sm" *ngIf="signinForm.controls['password'].errors?.['required']">
               Password is required
@@ -31,9 +45,20 @@
             </div>
           </div>
           <br />
-          <button [disabled]="!signinForm.valid" type="submit" class="bg-red-600 hover:bg-red-500 text-white font-bold py-2 px-4 rounded w-full" (click)="OnSubmit()">Submit</button>
+
+          <button 
+            [disabled]="!signinForm.valid" 
+            type="submit" 
+            class="bg-red-600 hover:bg-red-500 text-white font-bold py-2 px-4 rounded w-full transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+            (click)="OnSubmit()">
+            Submit
+          </button>
           <br /><br />
-          <p class="text-gray-600 text-sm">If you don't have an account, please <a class="text-red-600 font-semibold cursor-pointer" (click)="navigateToSignup()">Sign Up</a>.</p>
+
+          <p class="text-gray-600 text-sm">
+            If you don't have an account, please 
+            <a class="text-red-600 font-semibold cursor-pointer hover:underline" (click)="navigateToSignup()">Sign Up</a>.
+          </p>
         </div>
       </div>
     </form>

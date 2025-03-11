@@ -8,6 +8,9 @@ import { ProfileComponent } from './profile/profile.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AwarenessComponent } from './awareness/awareness.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
+import { DonorVieworgComponent } from './donor-vieworg/donor-vieworg.component';
+import { DonorOrglistComponent } from './donor-orglist/donor-orglist.component';
+import { ViewProfileComponent } from './view-profile/view-profile.component';
 
 
 @NgModule({
@@ -16,7 +19,10 @@ import { SignUpComponent } from './sign-up/sign-up.component';
     DashboardComponent,
     ProfileComponent,
     AwarenessComponent,
-    SignUpComponent
+    SignUpComponent,
+    DonorVieworgComponent,
+    DonorOrglistComponent,
+    ViewProfileComponent
   ],
   imports: [
     CommonModule,

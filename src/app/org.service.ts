@@ -210,18 +210,25 @@ export class OrgService {
     return this.http.get(`${this.bloodGroupFetchApi}/${userId}`); // Fetch blood group data
   }
 
-  addBloodGroup(
-    bloodGroup: any,
-    quantity: number,
-    userId: any
-  ): Observable<any> {
+ 
+  // addBloodGroup(bloodGroup: string, quantity: number, userId: string): Observable<any> {
+  //   return this.http.put(`${this.addBloodGroupApi}/addBloodGroup/${userId}`, {
+  //     bloodGroup: bloodGroup.toLowerCase(),
+  //     quantity: quantity,
+  //   });}
+  addBloodGroup(bloodGroup: string, quantity: number, userId: string): Observable<any> {
+    if (!bloodGroup || quantity <= 0) {
+      console.error("Invalid blood group or quantity");
+      return new Observable((observer) => observer.error("Invalid input"));
+    }
+  
     console.log(
       'blood group and blood quantity in org.service',
       bloodGroup,
       quantity
     );
-    return this.http.put(`${this.addBloodGroupApi}/${userId}`, {
-      bloodGroup: bloodGroup,
+    return this.http.put(`${this.addBloodGroupApi}/addBloodGroup/${userId}`, {
+      bloodGroup: bloodGroup.toUpperCase(), // Convert to uppercase
       quantity: quantity,
     });
   }

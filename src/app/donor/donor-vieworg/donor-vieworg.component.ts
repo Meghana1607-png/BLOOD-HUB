@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { from, Observable, Subscriber } from 'rxjs';
 import { AuthService } from 'src/app/auth.service';
 import { OrgService } from 'src/app/org.service';
 import { ProfileService } from 'src/app/profile.service';
@@ -8,11 +7,11 @@ import { ReceiverService } from 'src/app/receiver.service';
 import { RequestsService } from 'src/app/requests.service';
 
 @Component({
-  selector: 'app-view-org-form',
-  templateUrl: './view-org-form.component.html',
-  styleUrls: ['./view-org-form.component.css']
+  selector: 'app-donor-vieworg',
+  templateUrl: './donor-vieworg.component.html',
+  styleUrls: ['./donor-vieworg.component.css']
 })
-export class ViewOrgFormComponent {
+export class DonorVieworgComponent {
 
   orgDetails:any
   // organization:any[]=[];
@@ -24,8 +23,7 @@ export class ViewOrgFormComponent {
   selectedOrgId: any;
   userId: any;
 email:any
-
-  constructor(private supabase:OrgService,private auth:AuthService,private receiver:ReceiverService, private user:ProfileService,private request:RequestsService, private router:Router, private active:ActivatedRoute,private authservice:AuthService){
+constructor(private supabase:OrgService,private auth:AuthService,private receiver:ReceiverService, private user:ProfileService,private request:RequestsService, private router:Router, private active:ActivatedRoute){
 
     this.selectedOrgId = this.supabase.fetchorgform('id');
     this.userId = this.user.form('userId'); 
@@ -33,7 +31,6 @@ email:any
     this.userId = localStorage.getItem('userId');
     this.getUserID();
   }
-
   async ngOnInit() {
     // this.authservice.setAuthId(this.userid);  // Assuming user.id is fetched correctly
 
@@ -85,8 +82,8 @@ email:any
   async getUserId() {
     const { data: { user } } = await this.auth.getUser();
     if (user) {
-      this.userId = user.id; // Assign the correct user ID
-      this.email = user.email; // Assign the correct user email
+      this.userId = user.id; 
+      this.email = user.email;
     } else {
       console.error('User not logged in');
     }
@@ -98,7 +95,7 @@ email:any
       userid: this.userId, 
       email: this.email,
       status: 'Pending',
-      created_at: new Date().toISOString() // Ensure created field is properly set
+      created_at: new Date().toISOString() 
     };
   
     console.log('Request Data before submitting:', requestData); // Debugging
@@ -114,7 +111,4 @@ email:any
     });
   }
    
-  }
-  
-
-
+}

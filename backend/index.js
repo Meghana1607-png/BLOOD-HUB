@@ -114,23 +114,26 @@ function sendingMail(
 
 app.post("/donorforminsert", async (req, res) => {
   console.log("Received request body:", req.body);
-  const { Name, Age, BloodGroup, HealthIssues } = req.body;
-
-  if (!Name || !Age || !BloodGroup || !HealthIssues) {
-    console.log("Missing fields:", { Name, Age, BloodGroup, HealthIssues });
+  const { Name, email,Age, BloodGroup, HealthIssues ,LastDonatedDate, Mobile_Number, Gender,location} = req.body;
+  if (!Name || !Age ||! email || !BloodGroup || !HealthIssues || !LastDonatedDate||!  Mobile_Number ||! Gender || !location) {
+    console.log("Missing fields:", { Name, Age, BloodGroup,HealthIssues, Mobile_Number, Gender,location});
     return res.status(400).json({ message: "Missing required fields" });
   }
-
   try {
+    console.log("Inserting into table: donors");
     console.log("Submitting donor form for:", Name);
-
     const { data, error } = await supabase.from("donors").insert([
       {
         Name,
         Age,
         BloodGroup,
         HealthIssues,
-      },
+        LastDonatedDate,
+        Mobile_Number,
+        Gender,
+        location, 
+        email    
+      }
     ]);
     if (error) {
       console.error("Supabase Insert Error:", error);
@@ -204,33 +207,17 @@ app.post("/receiverforminsert", async (req, res) => {
     console.log(" req.body is EMPTY!");
     return res.status(400).json({ message: "No data received" });
   }
+  const { date, purpose, blood_group, blood_quatity, emergency ,userid,location, name} = req.body;
 
-  const { date, purpose, blood_group, blood_quatity, emergency } = req.body;
-
-  if (!date || !purpose || !blood_group || !blood_quatity || !emergency) {
-    console.log(" Missing fields:", {
-      date,
-      purpose,
-      blood_group,
-      blood_quatity,
-      emergency,
-    });
+  if (!date || !purpose || !blood_group || !blood_quatity || !emergency||!userid ||!location ||!name) {
+    console.log(" Missing fields:", { date, purpose, blood_group, blood_quatity, emergency,userid,location,name });
     return res.status(400).json({ message: "Missing required fields" });
   }
-
   try {
     const { data, error } = await supabase.from("receivers").insert([
-      {
-        purpose,
-        blood_group: blood_group,
-        blood_quatity: blood_quatity,
-        date: date,
-        emergency: emergency,
-      },
+      {name:name, purpose:purpose, blood_group: blood_group, blood_quatity: blood_quatity, date: date, emergency: emergency,userid:userid,location:location }
     ]);
-
     if (error) throw error;
-
     res.status(200).json({ message: "Receiver form submitted", data });
   } catch (error) {
     console.error(" Supabase Error:", error);
@@ -415,7 +402,7 @@ app.post("/userforminsert", async (req, res) => {
     if (!req.body || Object.keys(req.body).length === 0) {
       return res.status(400).json({ message: "Request body is missing" });
     }
-    const { userid, name, email, phno, address, gender } = req.body;
+    const { userid, name, email, phno, address, } = req.body;
 
     if (!userid) {
       console.error(" User ID is missing in request body:", req.body);
@@ -436,11 +423,11 @@ app.post("/userforminsert", async (req, res) => {
     }
 
     if (!existingUser || existingUser.length === 0) {
-      // User does not exist, insert them
       console.log("User does not exist, inserting into Supabase...");
       const { data: insertData, error: insertError } = await supabase
         .from("users")
-        .insert([{ userid, name, email, phno, address, gender }])
+        .insert([{ userid, name, email, phno, address,
+           }])
         .select();
 
       if (insertError) {
@@ -456,11 +443,10 @@ app.post("/userforminsert", async (req, res) => {
         .json({ message: "User inserted successfully", data: insertData });
     }
 
-    // If user exists, update their data
     console.log("User exists, updating details...");
     const { data, error } = await supabase
       .from("users")
-      .update({ name, email, phno, address, gender })
+      .update({ name, email, phno, address,  })
       .eq("userid", userid)
       .select();
     if (error) {

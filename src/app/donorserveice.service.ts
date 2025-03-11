@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { from, Observable } from 'rxjs';
 import { createClient, SupabaseClient } from '@supabase/supabase-js';
 
 
@@ -9,19 +9,36 @@ import { createClient, SupabaseClient } from '@supabase/supabase-js';
 })
 export class DonorserveiceService {
   private apiUrl = 'http://localhost:3000/donorforminsert';
-
   private supabase: SupabaseClient
-
   constructor(private http: HttpClient) {
-  
-    this.supabase = createClient('https://esuzqpwibfnycwmeirtg.supabase.co','eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVzdXpxcHdpYmZueWN3bWVpcnRnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzQ5NjA1MTQsImV4cCI6MjA1MDUzNjUxNH0.FUL9viBXkN2Q44hhdFKPj8uKBT0SkJqcSfbjPV2oExc')
-
+    this.supabase = createClient('https://esuzqpwibfnycwmeirtg.supabase.co',
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVzdXpxcHdpYmZueWN3bWVpcnRnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzQ5NjA1MTQsImV4cCI6MjA1MDUzNjUxNH0.FUL9viBXkN2Q44hhdFKPj8uKBT0SkJqcSfbjPV2oExc'
+    )
   }
-
-
   Donorinsert(donor: any): Observable<any> {
     console.log('Sending data to API:', donor);
-
     return this.http.post(this.apiUrl, donor);
   }
+  profilefetch(uid:any){
+      const res=this.supabase.from('donors').select().eq('donor_id',uid)
+    return from(res)
+    }
+    get auth() {
+      return this.supabase.auth;
+    }
+    async getuser() {
+      try {
+        const { data, error } = await this.supabase.auth.getUser();
+        console.log("getUser() - Supabase Response:", data);
+        if (error) {
+          console.error("Error in getUser:", error.message);
+          return { data: null, error };
+        }
+        return { data, error: null };
+      } catch (e) {
+        console.error("Exception in getUser:", e);
+        return { data: null, error: e };
+      }
+    }
+    
 }

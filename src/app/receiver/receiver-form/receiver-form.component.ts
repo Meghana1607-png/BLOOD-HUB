@@ -22,9 +22,11 @@ export class ReceiverFormComponent {
     this.patientForm = this.fb.group({
       date: ['', [Validators.required]],
       purpose: ['', [Validators.required]],
+      location: ['', [Validators.required]],
       blood_group: ['', [Validators.required]],
       blood_quatity: ['', [Validators.required, Validators.min(1)]], // New field with validation
       emergency: ['', [Validators.required]],
+      name:['',[Validators.required]]
     });
   }
 
@@ -32,23 +34,39 @@ export class ReceiverFormComponent {
     return this.patientForm.controls;
   }
 
-  onSubmit() {
+ async onSubmit() {
     if (this.patientForm.valid) {
-      this.receiverFormService.submitReceiverForm(this.patientForm.value).subscribe({
+  
+        console.log("Form is valid");
+          const { data: sessionData, error: sessionError } = await this.receiverFormService.auth.getSession();
+        if (sessionError || !sessionData || !sessionData.session || !sessionData.session.user) {
+          console.error("No active session found:", sessionError);
+          alert("No active session. Please log in again.");
+          return;
+        }
+        const userId = sessionData.session.user.id;
+        console.log("Fetched User ID (authid):", userId);
+          const userFormData = {
+          userid: userId,
+          ...this.patientForm.value
+        };  
+  
+      this.receiverFormService.submitReceiverForm(userFormData).subscribe({
         next: (response) => {
-          console.log("user insersion success")
+          console.log("User insertion success");
           alert(response.message);
           this.router.navigateByUrl('/org-list');
           this.patientForm.reset();
         },
         error: (error) => {
-          console.log('Form is invalid!');
+          console.log('Form submission failed!');
           console.error('Error submitting the form:', error.message);
           alert('An error occurred while submitting the form.');
         },
       });
     }
   }
+  
 
 
 // async orgdetails() : Promise<any>{

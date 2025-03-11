@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DonorModule } from './donor/donor.module';
@@ -14,7 +13,7 @@ import { SignupComponent } from './signup/signup.component';
 import { SigninComponent } from './signin/signin.component';
 import { DonorSigninComponent } from './donor-signin/donor-signin.component';
 import { SearchComponentComponent } from './search-component/search-component.component';
-ReactiveFormsModule;
+
 
 @NgModule({
   declarations: [
@@ -25,6 +24,7 @@ ReactiveFormsModule;
     SigninComponent,
     DonorSigninComponent,
     SearchComponentComponent,
+
   ],
   imports: [
     BrowserModule,

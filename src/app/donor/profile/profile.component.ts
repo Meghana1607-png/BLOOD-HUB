@@ -123,7 +123,8 @@ submitForm() {
     },
   });
   
-}}
+}
+}
 // bloodForm!: FormGroup;
 // submitted = false;
 // healthIssueIsYes = false;

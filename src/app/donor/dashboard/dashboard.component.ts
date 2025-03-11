@@ -17,8 +17,8 @@ export class DashboardComponent {
   c_role:any;
   menu = [
     { path: 'admin/dashboard', label: 'dashboard', icon: 'pi pi-home' },
-    { path: 'receiver/rec-awareness', label: 'awareness', icon: 'pi pi-sitemap' },
-    { path: 'receiver/rprofile', label: 'profile', icon: 'pi pi-user-plus' },
+    { path: 'donor/awareness', label: 'awareness', icon: 'pi pi-sitemap' },
+    { path: 'donor/profile', label: 'profile', icon: 'pi pi-user-plus' },
     // { path: 'admin/teams-table', label: 'teams', icon: 'pi pi-users' },
     // { path: 'admin/create-org', label: 'organisation', icon: 'pi pi-globe' },
     // { path: 'admin/profile', label: 'profile', icon: 'pi pi-id-card' },

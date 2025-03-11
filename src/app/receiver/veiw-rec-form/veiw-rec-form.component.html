@@ -1,0 +1,45 @@
+<div class="max-w-lg mx-auto p-6 bg-white shadow-lg rounded-2xl border border-gray-300">
+  <h2 class="text-xl font-semibold text-center text-purple-600 mb-4">
+    Recipient Details
+  </h2>
+
+
+  <div *ngIf="receiver; else noData">
+    <div class="grid grid-cols-2 gap-4">
+      <div class="p-4 bg-gray-100 rounded-lg">
+        <p class="text-sm font-semibold text-gray-700">Name:</p>
+        <p class="text-lg font-medium">{{ receiver?.name }}</p>
+      </div>
+      
+      <div class="p-4 bg-gray-100 rounded-lg">
+        <p class="text-sm font-semibold text-gray-700">Gender:</p>
+        <p class="text-lg font-medium">{{ receiver?.gender }}</p>
+      </div>
+
+      <div class="p-4 bg-gray-100 rounded-lg">
+        <p class="text-sm font-semibold text-gray-700">Blood Group:</p>
+        <p class="text-lg font-medium">{{ receiver?.blood_group }}</p>
+      </div>
+
+      <div class="p-4 bg-gray-100 rounded-lg col-span-2">
+        <p class="text-sm font-semibold text-gray-700">Purpose:</p>
+        <p class="text-lg font-medium">{{ receiver?.purpose }}</p>
+      </div>
+
+      <div class="p-4 bg-gray-100 rounded-lg">
+        <p class="text-sm font-semibold text-gray-700">Emergency Level:</p>
+        <p class="text-lg font-medium">{{ receiver.emergency }}</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- If no data is found -->
+  <ng-template #noData>
+    <p class="text-red-500 text-center mt-4">No recipient details found.</p>
+  </ng-template>
+</div>
+
+    <!-- <ng-template #loading>
+      <p class="text-center text-gray-500">Loading recipient details...</p>
+    </ng-template> -->
+  

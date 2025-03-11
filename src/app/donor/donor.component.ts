@@ -19,7 +19,11 @@ export class DonorComponent {
       Age: ['', [Validators.required, Validators.min(18), Validators.max(65)]],
       BloodGroup: ['', Validators.required],
       HealthIssues: ['',Validators.required],
-      // LastDonatedDate: ['',Validators.required]
+      LastDonatedDate: ['',Validators.required],
+      Mobile_Number: ['',Validators.required],
+      Gender: ['',Validators.required],
+      location: ['',Validators.required],
+      email: ['',Validators.required],
     });
 }
 get f() {

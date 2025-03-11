@@ -36,6 +36,7 @@ export class PendingDonorListComponent {
   }
 
   viewDetails(donor: any): void {
+    console.log('donor details in veiwDetails', donor);
     this.router.navigate(['org/view_donor'], {
       queryParams: {
         id: donor.userid,

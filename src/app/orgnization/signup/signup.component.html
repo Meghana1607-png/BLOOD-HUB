@@ -43,6 +43,13 @@
             />
             <p *ngIf="orgForm.get('password')?.invalid && orgForm.get('password')?.touched" class="text-red-500 text-sm">Password is required.</p>
           </div>
+
+          <!-- Confirm Password -->
+        <div class="mb-4">
+          <label class="block text-sm font-medium mb-2 text-red-700">Confirm Password:</label>
+          <input type="password" formControlName="confirmPassword" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500" placeholder="Confirm password" />
+          <p *ngIf="orgForm.get('confirmPassword')?.invalid && orgForm.get('confirmPassword')?.touched" class="text-red-500 text-sm">Passwords do not match.</p>
+          </div>
   
         <!-- Next Button -->
         <button 

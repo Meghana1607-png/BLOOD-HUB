@@ -1,0 +1,24 @@
+<div class="h-screen w-screen flex bg-gray-100">
+  <!-- Header -->
+  <app-header-side-bar></app-header-side-bar>
+  <div class="w-full mt-16 ml-64 mx-auto p-6 bg-gray-100 min-h-screen">
+    <h2 class="text-4xl font-bold text-center mb-8">
+      Feedbacks from {{ feedbacksData[0].name }}
+    </h2>
+    <ul>
+      <li
+        *ngFor="let feedback of feedbacksData"
+        class="flex items-center justify-between m-2 p-6 bg-white rounded-2xl shadow-2xl hover:shadow-3xl cursor-pointer"
+      >
+        <div>
+          <p class="text-lg text-black-600">{{ feedback.feedbackMessage }}</p>
+        </div>
+        <div>
+          <p class="text-lg text-black-600">
+            Created At: {{ feedback.created_at | date }}
+          </p>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>

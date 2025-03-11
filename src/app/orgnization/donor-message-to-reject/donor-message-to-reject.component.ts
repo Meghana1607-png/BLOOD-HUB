@@ -43,18 +43,22 @@ export class DonorMessageToRejectComponent {
     id: any;
     email: any;
     dataToSend: any;
+    name: any;
   } = {
     id: '',
     email: '',
     dataToSend: {},
+    name: '',
   };
 
   rejectdonor: {
     id: any;
     email: any;
+    name: any;
   } = {
     id: '',
     email: '',
+    name: '',
   };
 
   requestDonor(userId: any, message: string, donorEmail: string): void {
@@ -64,6 +68,7 @@ export class DonorMessageToRejectComponent {
         id: params['userid'],
         email: params['email'],
         dataToSend: JSON.parse(params['dataToSend']),
+        name: params['donorName'],
       };
       console.log('gkjjgfjg,', this.donor);
     });
@@ -74,7 +79,8 @@ export class DonorMessageToRejectComponent {
         message,
         this.donor.email,
         this.donor.dataToSend,
-        this.organisation
+        this.organisation,
+        this.donor.name
       )
       .subscribe({
         next: (data: any) => {
@@ -93,6 +99,7 @@ export class DonorMessageToRejectComponent {
       this.rejectdonor = {
         id: params['userid'],
         email: params['email'],
+        name: params['donorName'],
       };
       console.log('gkj,', this.donor);
     });
@@ -101,7 +108,8 @@ export class DonorMessageToRejectComponent {
         this.rejectdonor.id,
         message,
         this.rejectdonor.email,
-        this.organisation
+        this.organisation,
+        this.rejectdonor.name
       )
       .subscribe({
         next: (data: any) => {

@@ -25,6 +25,7 @@ import { MessageToRejectComponent } from './message-to-reject/message-to-reject.
 import { DonorMessageToRejectComponent } from './donor-message-to-reject/donor-message-to-reject.component';
 import { FeedbacksComponent } from './feedbacks/feedbacks.component';
 import { IndividualFeedbackComponent } from './individual-feedback/individual-feedback.component';
+import { EditProfileComponent } from './edit-profile/edit-profile.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { IndividualFeedbackComponent } from './individual-feedback/individual-fe
     DonorMessageToRejectComponent,
     FeedbacksComponent,
     IndividualFeedbackComponent,
+    EditProfileComponent,
   ],
   imports: [
     CommonModule,

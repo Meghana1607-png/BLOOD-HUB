@@ -1,35 +1,42 @@
-<div class="h-dvh w-dvh flex">
+<div class="h-screen w-screen flex">
   <!-- Header -->
-
   <app-header-side-bar></app-header-side-bar>
   <div class="mt-16 ml-64">
-    <div class="flex items-center justify-center w-full p-6 ">
-      <div class="max-w-lg w-full bg-white shadow-xl rounded-2xl overflow-hidden border border-red-400">
-<div *ngIf="organizationProfile">
-  <div class="px-8 py-6">
-  <h2 class="text-3xl font-semibold text-red-700 text-center">Profile</h2>
-  <div class="mt-5 mb-6 text-gray-700">
-    <p class="text-sm"><strong class="text-black-900">Name:</strong> {{ organizationProfile.name }}</p>
-    <p class="text-sm"><strong class="text-black-900">Email:</strong> {{ organizationProfile.email }}</p>
-    <p class="text-sm"><strong class="text-black-900">Phone:</strong> {{ organizationProfile.phone }}</p>
-    <p class="text-sm"><strong class="text-black-900">Address:</strong> {{ organizationProfile.address }}</p>
-    <p class="text-sm"><strong class="text-black-900">Blood Groups:</strong></p>
-  
-<ul>
-  <li *ngFor="let bloodGroup of bloodGroupsArray">
-    {{ bloodGroup.bloodGroup }}: {{ bloodGroup.quantity }}
-  </li>
-</ul>
+    <div class="flex items-center justify-center w-full p-6">
+      <div class="max-w-4xl w-full bg-white shadow-xl rounded-2xl overflow-hidden border border-red-400">
+        <div *ngIf="organizationProfile">
+          <div class="px-8 py-6">
+            <h2 class="text-3xl font-semibold text-red-700 text-center">Profile</h2>
+            <div class="mt-5 mb-6 text-gray-700">
+              <p class="text-sm">
+                <strong class="text-black-900">Name:</strong>
+                {{ organizationProfile.name }}
+              </p>
+              <p class="text-sm">
+                <strong class="text-black-900">Email:</strong>
+                {{ organizationProfile.email }}
+              </p>
+              <p class="text-sm">
+                <strong class="text-black-900">Phone:</strong>
+                {{ organizationProfile.phone }}
+              </p>
+              <p class="text-sm">
+                <strong class="text-black-900">Address:</strong>
+                {{ organizationProfile.address }}
+              </p>
+              <p class="text-sm">
+                <strong class="text-black-900">Blood Groups:</strong>
+              </p>
+              <ul>
+                <li *ngFor="let bloodGroup of bloodGroupsArray">
+                  {{ bloodGroup.bloodGroup }}: {{ bloodGroup.quantity }}
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <button (click)="Edit()" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Edit</button>
+      </div>
+      </div>
 </div>
-
 </div>
-</div>
-</div>
-<div *ngIf="!organizationProfile">
-  <p>Loading profile data...</p>
-</div>
-</div>
-</div>
-</div>
-
-

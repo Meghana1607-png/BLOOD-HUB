@@ -21,6 +21,7 @@ import { MessageToRejectComponent } from './message-to-reject/message-to-reject.
 import { DonorMessageToRejectComponent } from './donor-message-to-reject/donor-message-to-reject.component';
 import { FeedbacksComponent } from './feedbacks/feedbacks.component';
 import { IndividualFeedbackComponent } from './individual-feedback/individual-feedback.component';
+import { EditProfileComponent } from './edit-profile/edit-profile.component';
 
 const routes: Routes = [
   { path: 'signin', component: SigninComponent },
@@ -35,6 +36,7 @@ const routes: Routes = [
   { path: 'org/view_receiver', component: ViewReceiverComponent },
   { path: 'req', component: RequestsComponent },
   { path: 'org/Profile', component: OrgProfileComponent },
+  { path: 'org/Profile/editProfile', component: EditProfileComponent },
   { path: 'org-request', component: OrgRequestsComponent },
   { path: 'org-form', component: ViewOrgFormComponent },
   { path: 'org/receiversList/pending', component: PendingReceiversComponent },

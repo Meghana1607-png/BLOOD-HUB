@@ -40,6 +40,7 @@ export class OrgService {
   private fetchFeedbacksApi = 'http://localhost:3000/org/feedbacks';
   private fetchIndividualFeedbacksApi =
     'http://localhost:3000/org/feedbacks/individualFeedback';
+  private updateProfileApi = 'http://localhost:3000/org/updateProfile';
   showPopup: boolean = false;
   is_slidebar: boolean = false;
   addBloodGroupModal = false;
@@ -78,6 +79,13 @@ export class OrgService {
       donorEmail,
       organistaion,
       donorName,
+    });
+  }
+
+  updateProfile(organisation: any, userId: any): Observable<any> {
+    console.log('org.serc', organisation);
+    return this.http.put(`${this.updateProfileApi}/${userId}`, {
+      organisation,
     });
   }
 

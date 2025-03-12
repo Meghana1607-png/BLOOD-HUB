@@ -57,6 +57,9 @@ export class DashboardComponent {
   show_slidebar() {
     this.is_slidebar = true;
   }
+  closeDropdown() {
+    this.showDropdown = false;
+  }
 
   hide_slidebar() {
     this.is_slidebar = false;
@@ -65,10 +68,11 @@ export class DashboardComponent {
     console.log("Button clicked!")
   }
 
-
-  toggleDropdown() {
+  toggleDropdown(event: Event) {
+    event.stopPropagation(); // Prevents click event from closing immediately
     this.showDropdown = !this.showDropdown;
   }
+  
 
   selectRole(role: string) {
     console.log(`Selected role: ${role}`);// Handle role selection logic here

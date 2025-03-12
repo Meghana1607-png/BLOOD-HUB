@@ -98,10 +98,12 @@ export class ViewReceiverComponent {
               this.receiverDetails[0].blood_quatity.trim()
             );
 
+            console.log('receiver QUANTITY', quantity);
+
             // Update the matched blood group's quantity
             matchedBloodGroup.quantity -= quantity;
 
-            if (matchedBloodGroup.quantity >= 0) {
+            if (matchedBloodGroup.quantity >= 0 && matchedBloodGroup.quantity > quantity) {
               this.orgService
                 .updateBloodGroupQuantity(
                   this.receiverDetails[0].blood_group.toUpperCase(),
@@ -138,6 +140,7 @@ export class ViewReceiverComponent {
 
               console.log('userId in updating bloodGroups:', userId);
             } else {
+              console.log("hii")
               this.showPopup = true;
               this.popupMessage = `Insufficient quantity.`;
               setTimeout(() => {

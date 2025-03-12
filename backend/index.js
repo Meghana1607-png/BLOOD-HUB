@@ -653,6 +653,26 @@ app.get("/org/donors/approved/:id", async (req, res) => {
   }
 });
 
+app.get("/org/donors/donorrequests/:id", async (req, res) => {
+  const { id } = req.params;
+  try {
+    console.log("id in donor requests - ", id);
+    const { data, error } = await supabase
+      .from("org_request")
+      .select("*")
+      .eq("org_id", id);
+
+    if (error) {
+      console.log(error);
+      return res.status(400).json({ error: error.message });
+    }
+    res.json(data);
+  } catch (err) {
+    console.error("Unexpected error:", err);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
 app.get("/org/donors/rejected/:id", async (req, res) => {
   const { id } = req.params;
   try {

@@ -22,6 +22,7 @@ import { DonorMessageToRejectComponent } from './donor-message-to-reject/donor-m
 import { FeedbacksComponent } from './feedbacks/feedbacks.component';
 import { IndividualFeedbackComponent } from './individual-feedback/individual-feedback.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
+import { DonorRequestsComponent } from './donor-requests/donor-requests.component';
 
 const routes: Routes = [
   { path: 'signin', component: SigninComponent },
@@ -30,6 +31,7 @@ const routes: Routes = [
     component: DashboardComponent,
   },
   { path: 'org/view_donor', component: ViewDonorComponent },
+  { path: 'org/donorList/requests', component: DonorRequestsComponent },
   { path: 'org/view_donor_requests', component: ViewDonorComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'view_org', component: ViewOrgFormComponent },

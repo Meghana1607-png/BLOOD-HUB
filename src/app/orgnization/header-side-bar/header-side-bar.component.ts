@@ -11,16 +11,31 @@ export class HeaderSideBarComponent {
   userId: any;
   selectedPage = 'Blood Hub';
   showConfirmLogoutPopup = false;
+  org: any;
+  organisation: any;
   constructor(
     private router: Router,
     private activeroute: ActivatedRoute,
     private orgService: OrgService
   ) {
     this.userId = localStorage.getItem('userId');
+    this.org = localStorage.getItem('organisation');
+    if (this.org) {
+      this.organisation = JSON.parse(this.org);
+    }
+    console.log(
+      'organisation details in sending message module',
+      this.organisation
+    );
   }
   menu = [
     { path: 'org-dashboard', label: 'Blood Hub', icon: 'pi pi-users' },
     { path: 'org/donorsList', label: 'Donors list', icon: 'pi pi-users' },
+    {
+      path: 'org/donorList/requests',
+      label: 'Donor Requests',
+      icon: 'pi pi-users',
+    },
     //{ path: 'org/receiversList', label: 'Receivers list', icon: 'pi pi-users' },
     {
       path: 'org/donorsList/pending',
@@ -74,19 +89,19 @@ export class HeaderSideBarComponent {
   NavToPage(path: any) {
     this.router.navigate(['/' + path]);
     this.orgService.is_slidebar = false;
+    // Optionally, you can use the Location service to go back to the previous page
+    // this.location.back();
   }
 
   logout() {
-    if (this.showConfirmLogoutPopup) {
-      this.showConfirmLogoutPopup = false;
-    } else {
-      this.showConfirmLogoutPopup = true;
-    }
+    this.showConfirmLogoutPopup = !this.showConfirmLogoutPopup;
   }
 
   confirmLogout() {
-    // Call your logout API here
+    localStorage.removeItem('access_token');
+    localStorage.removeItem('userId');
     this.showConfirmLogoutPopup = false;
+    localStorage.removeItem('userId');
     this.router.navigate(['/']);
   }
 

@@ -100,7 +100,7 @@ export class DashboardComponent {
     console.log('newBloodGroup:', newBloodGroup);
     console.log('Form Data:', newBloodGroup, newBloodQuantity);
     const existingBloodGroup = this.bloodGroups.find(
-      (group) => group.bloodGroup === newBloodGroup.bloodGroup
+      (group) => group.bloodGroup === newBloodGroup
     );
 
     if (existingBloodGroup) {

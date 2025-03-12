@@ -70,7 +70,7 @@ export class DashboardComponent {
     this.orgService.getBloodGroups(userId).subscribe({
       next: (data: any) => {
         try {
-          const bloodGroups = JSON.parse(data[0].bloodGroup);
+          const bloodGroups = JSON.parse(data[0].blood_groups);
           this.bloodGroups = bloodGroups;
         } catch (error) {
           console.error('Error parsing bloodGroups:', error);

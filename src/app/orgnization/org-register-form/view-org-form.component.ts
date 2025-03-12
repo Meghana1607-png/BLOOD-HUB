@@ -44,9 +44,11 @@ email:any
         email: params['email'] || '',
         phone: params['phone'] || '',
         address: params['address'] || '',
-        bloodDetails: params['bloodDetails'] ? JSON.parse(params['bloodDetails']) : [],
- };
+        bloodDetails: params['bloodGroupData']
+ }
     });
+
+    console.log("bloodgroupdata", this.organization.bloodDetails)
   }
    
   organization : {
@@ -75,7 +77,7 @@ email:any
     this.supabase.fetchorgform('id').subscribe({
       next: (data: string) => {  
         this.selectedOrgId = data;
-        console.log(this.selectedOrgId);
+        console.log("hii",this.selectedOrgId);
       },
       error: (error: any) => {
         console.error('Error fetching org details:', error);

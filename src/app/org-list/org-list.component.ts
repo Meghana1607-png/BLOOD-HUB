@@ -37,6 +37,8 @@ export class OrgListComponent {
   ngOnInit(){}
 
   viewDetails(org: any): void {
-this.router.navigate(['/view_org'], {queryParams:{id:org.id, email:org.email, phone:org.phone,name:org.name,address:org.address, gender:org.gender, age:org.age}})
+  console.log("org",org)
+this.router.navigate(['/view_org'], {queryParams:{id:org.id, email:org.email, phone:org.phone,name:org.name,address:org.address, gender:org.gender, age:org.age, bloodGroupData: JSON.parse(org.blood_groups
+)}})
   }
 }

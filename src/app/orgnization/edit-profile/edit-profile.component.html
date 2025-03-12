@@ -1,0 +1,242 @@
+<!-- <div
+  class="max-w-4xl w-full bg-white shadow-xl rounded-2xl overflow-hidden border border-red-400"
+>
+  <div>
+    <div class="px-8 py-6">
+      <h2 class="text-3xl font-semibold text-red-700 text-center">Profile</h2>
+      <div class="mt-5 mb-6 text-gray-700">
+        <label class="text-sm">
+          <strong class="text-black-900">Name:</strong>
+          <input
+            [(ngModel)]="organizationProfile.name"
+            type="text"
+            class="w-full p-2 border border-gray-300 rounded-lg"
+          />
+          <div *ngIf="nameError" class="text-red-500">{{ nameError }}</div>
+        </label>
+        <label class="text-sm">
+          <strong class="text-black-900">Email:</strong>
+          <input
+            [(ngModel)]="organizationProfile.email"
+            type="email"
+            class="w-full p-2 border border-gray-300 rounded-lg"
+          />
+          <div *ngIf="emailError" class="text-red-500">{{ emailError }}</div>
+        </label>
+        <label class="text-sm">
+          <strong class="text-black-900">Phone:</strong>
+          <input
+            [(ngModel)]="organizationProfile.phone"
+            type="tel"
+            class="w-full p-2 border border-gray-300 rounded-lg"
+          />
+          <div *ngIf="phoneError" class="text-red-500">{{ phoneError }}</div>
+        </label>
+        <label class="text-sm">
+          <strong class="text-black-900">Address:</strong>
+          <input
+            [(ngModel)]="organizationProfile.address"
+            type="text"
+            class="w-full p-2 border border-gray-300 rounded-lg"
+          />
+        </label>
+        <p class="text-sm">
+          <strong class="text-black-900">Blood Groups:</strong>
+        </p>
+        <ul>
+          <li *ngFor="let bloodGroup of bloodGroupsArray">
+            <label>
+              <input
+                [(ngModel)]="bloodGroup.bloodGroup"
+                type="text"
+                class="w-full p-2 border border-gray-300 rounded-lg"
+              />
+              <input
+                [(ngModel)]="bloodGroup.quantity"
+                type="number"
+                class="w-full p-2 border border-gray-300 rounded-lg"
+              />
+              <button
+                (click)="removeBloodGroup(bloodGroup.bloodGroup)"
+                class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+              >
+                Remove
+              </button>
+            </label>
+          </li>
+        </ul>
+        <label>
+          <strong class="text-black-900">Add Blood Group:</strong>
+          <input
+            [(ngModel)]="newBloodGroup"
+            type="text"
+            placeholder="Blood Group"
+            class="w-full p-2 border border-gray-300 rounded-lg"
+          />
+          <input
+            [(ngModel)]="newBloodGroupQuantity"
+            type="number"
+            placeholder="Quantity"
+            class="w-full p-2 border border-gray-300 rounded-lg"
+          />
+          <button
+            (click)="addBloodGroup()"
+            class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+          >
+            Add
+          </button>
+          <div *ngIf="bloodGroupError" class="text-red-500">
+            {{ bloodGroupError }}
+          </div>
+        </label>
+        <button
+          (click)="saveProfile()"
+          class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+        >
+          Save Changes
+        </button>
+        <div *ngIf="!validateProfile()" class="text-red-500">
+          <p *ngIf="!organizationProfile.name">Please enter your name</p>
+          <p *ngIf="!validateEmail(organizationProfile.email)">
+            Please enter a valid email address
+          </p>
+          <p *ngIf="!validatePhone(organizationProfile.phone)">
+            Please enter a valid phone number
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="!organizationProfile">
+  <p>Loading profile data...</p>
+</div> -->
+
+<div class="h-screen w-screen flex">
+  <!-- Header -->
+  <app-header-side-bar></app-header-side-bar>
+  <div class="mt-16 ml-64">
+    <div class="flex items-center justify-center w-full p-6">
+      <div
+        class="max-w-4xl w-full bg-white shadow-xl rounded-2xl overflow-hidden border border-red-400"
+      >
+        <div>
+          <div class="px-8 py-6">
+            <h2 class="text-3xl font-semibold text-red-700 text-center">
+              Profile
+            </h2>
+
+            <div class="mt-5 mb-6 text-gray-700">
+              <label class="text-sm">
+                <strong class="text-black-900">Name:</strong>
+                <input
+                  [(ngModel)]="organizationProfile.organization.name"
+                  type="text"
+                  class="w-full p-2 border border-gray-300 rounded-lg"
+                />
+                <div *ngIf="nameError" class="text-red-500">
+                  {{ nameError }}
+                </div>
+              </label>
+              <label class="text-sm">
+                <strong class="text-black-900">Email:</strong>
+                <input
+                  [(ngModel)]="organizationProfile.organization.email"
+                  type="email"
+                  class="w-full p-2 border border-gray-300 rounded-lg"
+                />
+                <div *ngIf="emailError" class="text-red-500">
+                  {{ emailError }}
+                </div>
+              </label>
+              <label class="text-sm">
+                <strong class="text-black-900">Phone:</strong>
+                <input
+                  [(ngModel)]="organizationProfile.organization.phone"
+                  type="tel"
+                  class="w-full p-2 border border-gray-300 rounded-lg"
+                />
+                <div *ngIf="phoneError" class="text-red-500">
+                  {{ phoneError }}
+                </div>
+              </label>
+              <label class="text-sm">
+                <strong class="text-black-900">Address:</strong>
+                <input
+                  [(ngModel)]="organizationProfile.organization.address"
+                  type="text"
+                  class="w-full p-2 border border-gray-300 rounded-lg"
+                />
+              </label>
+              <p class="text-sm">
+                <strong class="text-black-900">Blood Groups:</strong>
+              </p>
+              <ul>
+                <li *ngFor="let bloodGroup of bloodGroupsArray">
+                  <label>
+                    <input
+                      [(ngModel)]="bloodGroup.bloodGroup"
+                      type="text"
+                      class="w-full p-2 border border-gray-300 rounded-lg"
+                    />
+                    <input
+                      [(ngModel)]="bloodGroup.quantity"
+                      type="number"
+                      class="w-full p-2 border border-gray-300 rounded-lg"
+                    />
+                    <button
+                      (click)="removeBloodGroup(bloodGroup.bloodGroup)"
+                      class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+                    >
+                      Remove
+                    </button>
+                  </label>
+                </li>
+              </ul>
+              <label>
+                <strong class="text-black-900">Add Blood Group:</strong>
+                <input
+                  [(ngModel)]="newBloodGroup"
+                  type="text"
+                  placeholder="Blood Group"
+                  class="w-full p-2 border border-gray-300 rounded-lg"
+                />
+                <input
+                  [(ngModel)]="newBloodGroupQuantity"
+                  type="number"
+                  placeholder="Quantity"
+                  class="w-full p-2 border border-gray-300 rounded-lg"
+                />
+                <button
+                  (click)="addBloodGroup()"
+                  class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+                >
+                  Add
+                </button>
+                <div *ngIf="bloodGroupError" class="text-red-500">
+                  {{ bloodGroupError }}
+                </div>
+              </label>
+              <button
+                (click)="saveProfile()"
+                class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+              >
+                Save Changes
+              </button>
+              <div *ngIf="!validateProfile()" class="text-red-500">
+                <p *ngIf="!organizationProfile.organization.name"></p>
+                <p *ngIf="!validateEmail(organizationProfile.organization.email)">
+                </p>
+                <p *ngIf="!validatePhone(organizationProfile.organization.phone)">
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="!organizationProfile.organization">
+        <p>Loading profile data...</p>
+      </div>
+    </div>
+  </div>
+</div>

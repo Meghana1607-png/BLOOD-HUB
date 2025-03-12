@@ -2,7 +2,8 @@
   <!-- Header -->
 
   <app-header-side-bar></app-header-side-bar>
-  <div class="mt-16 ml-64">
+  <div class="ml-64 mt-20">
+  <div class="mt-4 ml-64">
     <div class="flex items-center justify-center w-full p-6">
       <!-- Popup -->
       <div
@@ -20,42 +21,42 @@
             Donor Details
           </h2>
           <div class="mt-5 mb-6 text-gray-700">
-            <p class="text-sm">
+            <p class="text-xl">
               <strong class="text-black-900">Username:</strong>
               {{ donorDetails[0].Name }}
             </p>
-            <p class="text-sm">
+            <p class="text-xl">
               <strong class="text-black-900">Email:</strong> {{ donor.email }}
             </p>
-            <p class="text-sm">
+            <p class="text-xl">
               <strong class="text-black-900">BloodGroup Required:</strong>
               {{ donorDetails[0].BloodGroup }}
             </p>
-            <p class="text-sm">
+            <p class="text-xl">
               <strong class="text-black-900">Age:</strong>
               {{ donorDetails[0].Age }}
             </p>
-            <p class="text-sm">
+            <p class="text-xl">
               <strong class="text-black-900">Gender:</strong>
               {{ donorDetails[0].Gender }}
             </p>
-            <p class="text-sm">
+            <p class="text-xl">
               <strong class="text-black-900">HealthIssues:</strong>
               {{ donorDetails[0].HealthIssues }}
             </p>
-            <p class="text-sm">
+            <p class="text-xl">
               <strong class="text-black-900">MobileNumber:</strong>
               {{ donorDetails[0].Mobile_Number }}
             </p>
-            <p class="text-sm">
+            <p class="text-xl">
               <strong class="text-black-900">Blood Quantity:</strong>
               {{ donorDetails[0].blood_quantity }}
             </p>
-            <p class="text-sm">
+            <p class="text-xl">
               <strong class="text-black-900">last Date:</strong>
               {{ donorDetails[0].LastDonatedDate }}
             </p>
-            <p class="text-sm">
+            <p class="text-xl">
               <strong class="text-black-900">location:</strong>
               {{ donorDetails[0].location }}
             </p>
@@ -86,7 +87,7 @@
           >
             <button
               (click)="requestDonor(donor.donor_id)"
-              class="bg-green-500 text-white px-3 py-1 rounded ml-40"
+              class="bg-green-500 text-2xl text-white p-2 rounded ml-40"
             >
               request
             </button>
@@ -95,4 +96,5 @@
       </div>
     </div>
   </div>
+</div>
 </div>

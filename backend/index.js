@@ -951,6 +951,37 @@ app.get("/org/giveFeedback/:id", async (req, res) => {
   res.render("feedback", { id, orgId, donorReceiverEmail, donorReceiverName });
 });
 
+app.put("/org/updateProfile/:id", async (req, res) => {
+  const { id } = req.params;
+  const {organisation} = req.body;
+  console.log("organisation in update profile - ", organisation);
+
+  try {
+    const { data, error } = await supabase.from("organization").update([
+      {
+        name : organisation.organization.name,
+        email: organisation.organization.email,
+        phone: organisation.organization.phone,
+        address: organisation.organization.address,
+        blood_groups: organisation.organization.blood_groups,
+      },
+    ]).eq("userId", id);
+
+    console.log("organisation in update profile - ", organisation);
+
+    if (error) {
+      console.error("Supabase Error Details:", error);
+      return res.status(500).json({ message: "Failed to update profile" });
+    }
+
+    res.json(data);
+  } catch (error) {
+    console.error("Error during giving updating profile", error);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+});
+
+
 app.post("/org/giveFeedback/:id", async (req, res) => {
   const { id } = req.params;
   const { orgId } = req.body;

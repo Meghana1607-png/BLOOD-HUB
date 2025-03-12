@@ -1,16 +1,15 @@
-
-<div class="h-dvh w-dvh flex bg-gray-100">
+<div class="w-dvh flex bg-gray-100">
   <!-- Header -->
   <app-header-side-bar></app-header-side-bar>
-  <div class="w-full mt-16 ml-64 mx-auto p-6 bg-gray-100 min-h-screen">
-    <h1 class="text-3xl font-bold text-center mb-6">Feedbacks</h1>
+  <div class="mt-16 ml-64 mx-auto p-6 bg-gray-100 min-h-screen">
+    <h1 class="text-2xl font-bold text-center mb-6">Feedbacks</h1>
     <div *ngIf="feedbacksData?.length; else noData" class="space-y-4">
       <div
         *ngFor="let feedback of feedbacksData"
         class="flex items-center justify-between p-4 bg-white rounded-lg shadow-md hover:shadow-lg"
         (click)="navigateToFeedbackDetails(feedback)"
       >
-       <div class="flex items-center">
+        <div class="flex items-center">
           <div class="flex-shrink-0 mr-4">
             <img
               [src]="feedback.logo || 'https://via.placeholder.com/50'"
@@ -18,12 +17,12 @@
               class="w-12 h-12 rounded-full object-cover"
             />
           </div>
-          <div>
-            <p class="text-lg text-black-600 font-bold">{{ feedback.name }}</p>
+          <div class=" mr-64 ml-4">
+            <p class="text-xl text-black-600 font-bold">{{ feedback.name }}</p>
             <p class="text-sm text-black-600">
               {{ feedback.donorReceiverEmail }}
             </p>
-            <p class="text-m text-black-600">{{ feedback.feedbackMessage }}</p>
+            <p class="text-lm text-black-700">{{ feedback.feedbackMessage }}</p>
           </div>
         </div>
         <div>
@@ -33,8 +32,8 @@
     </div>
     <ng-template #noData>
       <div class="text-center p-4 bg-gray-200 rounded-lg shadow-md">
-        <p class="text-lg text-gray-600 font-bold">No feedbacks found.</p>
-        <p class="text-sm text-gray-600">
+        <p class="text-lg text-black-600 font-bold">No feedbacks found.</p>
+        <p class="text-sm text-black-600">
           It looks like there are no feedbacks to display.
         </p>
       </div>

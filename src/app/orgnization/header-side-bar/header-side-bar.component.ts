@@ -10,6 +10,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class HeaderSideBarComponent {
   userId: any;
   selectedPage = 'Blood Hub';
+  showConfirmLogoutPopup = false;
   constructor(
     private router: Router,
     private activeroute: ActivatedRoute,
@@ -73,5 +74,23 @@ export class HeaderSideBarComponent {
   NavToPage(path: any) {
     this.router.navigate(['/' + path]);
     this.orgService.is_slidebar = false;
+  }
+
+  logout() {
+    if (this.showConfirmLogoutPopup) {
+      this.showConfirmLogoutPopup = false;
+    } else {
+      this.showConfirmLogoutPopup = true;
+    }
+  }
+
+  confirmLogout() {
+    // Call your logout API here
+    this.showConfirmLogoutPopup = false;
+    this.router.navigate(['/']);
+  }
+
+  cancelLogout() {
+    this.showConfirmLogoutPopup = false;
   }
 }

@@ -70,7 +70,7 @@ export class DashboardComponent {
     this.orgService.getBloodGroups(userId).subscribe({
       next: (data: any) => {
         try {
-          const bloodGroups = JSON.parse(data[0].bloodGroup);
+          const bloodGroups = JSON.parse(data[0].blood_groups);
           this.bloodGroups = bloodGroups;
         } catch (error) {
           console.error('Error parsing bloodGroups:', error);
@@ -100,7 +100,7 @@ export class DashboardComponent {
     console.log('newBloodGroup:', newBloodGroup);
     console.log('Form Data:', newBloodGroup, newBloodQuantity);
     const existingBloodGroup = this.bloodGroups.find(
-      (group) => group.bloodGroup === newBloodGroup.bloodGroup
+      (group) => group.bloodGroup === newBloodGroup
     );
 
     if (existingBloodGroup) {

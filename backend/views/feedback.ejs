@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html>
   <head>
     <title>Feedback</title>
@@ -15,6 +15,83 @@
         value="<%= donorReceiverEmail %>"
       />
 
+      <input type="hidden" name="orgId" value="<%= orgId %>" />
+      <input
+        type="hidden"
+        name="donorReceiverName"
+        value="<%= donorReceiverName %>"
+      />
+    </form>
+  </body>
+</html> -->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Feedback</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+      }
+
+      h1 {
+        text-align: center;
+        color: #333;
+      }
+
+      form {
+        width: 50%;
+        margin: 40px auto;
+        padding: 20px;
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+      label {
+        display: block;
+        margin-bottom: 10px;
+      }
+
+      textarea {
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        margin-right: 10px;
+        outline: none;
+      }
+
+      button[type="submit"] {
+        background-color: #4caf50;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 10px;
+        margin-left: 250px;
+      }
+
+      button[type="submit"]:hover {
+        background-color: #3e8e41;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Feedback</h1>
+    <form action="/org/giveFeedback/<%= id %>" method="post">
+      <label for="feedback">Please provide feedback:</label>
+      <textarea id="feedback" name="feedback" rows="5" cols="50"></textarea>
+      <button type="submit">Submit Feedback</button>
+      <input
+        type="hidden"
+        name="donorEmail"
+        value="<%= donorReceiverEmail %>"
+      />
       <input type="hidden" name="orgId" value="<%= orgId %>" />
       <input
         type="hidden"

@@ -7,7 +7,7 @@
     <div class="flex items-center justify-center w-full p-6">
       <!-- Popup -->
       <div
-        class="fixed z-10 top-0 left-0 w-full py-2 bg-red-600 text-white text-center"
+        class="fixed z-10 top-200 left-200 w-full py-2 bg-red-600 text-white text-center"
         *ngIf="showPopup"
       >
         {{ popupMessage }}
@@ -69,13 +69,13 @@
           >
             <button
               (click)="acceptDonor(donor.donor_id)"
-              class="bg-green-500 text-white px-3 py-1 rounded mr-2"
+              class="bg-green-500 hover:bg-green-600 text-white ml-8 text-2xl p-2 rounded"
             >
               Accept
             </button>
             <button
               (click)="rejectDonor(donor.donor_id)"
-              class="bg-red-500 text-white px-3 py-1 rounded"
+              class="bg-red-500 hover:bg-red-600 text-white ml-20 text-2xl p-2 rounded"
             >
               Reject
             </button>
@@ -87,8 +87,7 @@
           >
             <button
               (click)="requestDonor(donor.donor_id)"
-              class="bg-green-500 text-2xl text-white p-2 rounded ml-40"
-            >
+              class="bg-red-500 hover:bg-red-600 text-white ml-20 text-2xl p-2 rounded"            >
               request
             </button>
           </div>

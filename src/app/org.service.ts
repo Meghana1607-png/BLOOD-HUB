@@ -19,6 +19,8 @@ export class OrgService {
   private profileFetchUrl = 'http://localhost:3000/api/organization';
   private fetchPendingReceiversApi =
     'http://localhost:3000/org/receivers/pending';
+  private donorRequestsListApi =
+    'http://localhost:3000/org/donors/donorrequests';
   private fetchApprovedReceiversApi =
     'http://localhost:3000/org/receivers/approved';
   private fetchRejectedReceiversApi =
@@ -62,6 +64,10 @@ export class OrgService {
 
   openAddBloodGroupModal() {
     this.addBloodGroupModal = true;
+  }
+
+  fetchDonorRequestLists(userId: any): Observable<any> {
+    return this.http.get(`${this.donorRequestsListApi}/${userId}`);
   }
 
   requestDonor(

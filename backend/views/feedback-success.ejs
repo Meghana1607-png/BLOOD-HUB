@@ -2,12 +2,34 @@
 <html>
   <head>
     <title>Feedback Success</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+      }
+
+      h1 {
+        text-align: center;
+        color: #333;
+        margin-top: 100px;
+      }
+
+      .success-message {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 24px;
+        font-weight: bold;
+        color: #2ecc71;
+      }
+    </style>
   </head>
   <body>
-    <h1><%= message %></h1>
-
+    <div class="success-message">
+      <h1><%= message %></h1>
+    </div>
     <script>
-      // Redirect to Gmail after 3 seconds
       setTimeout(() => {
         window.location.replace("https://mail.google.com/mail/u/0/#inbox");
       }, 3000);

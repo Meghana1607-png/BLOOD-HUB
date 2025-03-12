@@ -32,6 +32,11 @@ export class SigninComponent {
           console.log('response', response);
           if (response.data) {
             this.signInForm.reset();
+            localStorage.setItem(
+              'access_token',
+              response.data.session.access_token
+            );
+            console.log('access_token', response.data.session.access_token);
             localStorage.setItem('userId', response.data.user.id);
             console.log('userId' + response.data.user.id);
             this.router.navigate(['/org-dashboard']);

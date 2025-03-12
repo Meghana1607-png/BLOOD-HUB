@@ -15,6 +15,8 @@ export class OrgProfileComponent implements OnInit {
   userId: any;
   bloodGroupsArray: any[] = [];
   org: any;
+  presentPath: any;
+  currentPath : any;
 
   // Error messages
   nameError: string = '';
@@ -27,6 +29,10 @@ export class OrgProfileComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router
   ) {
+    this.presentPath = this.router.url;
+    console.log('presentPath', this.presentPath);
+    this.currentPath = this.presentPath.split('?')[0].trim();
+    console.log('currentPath', this.currentPath);
     this.userId = localStorage.getItem('userId');
     this.org = localStorage.getItem('organization');
   }

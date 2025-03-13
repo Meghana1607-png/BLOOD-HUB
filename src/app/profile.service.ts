@@ -45,6 +45,38 @@ export class ProfileService {
     return this.supabase.auth;
   }
   
+  async updateUser(userid: string, updatedData: any): Promise<any> {
+    if (!userid) {
+      throw new Error("User ID is required for updating profile.");
+    }
+  
+    const { data, error } = await this.supabase
+      .from('users')
+      .update(updatedData)
+      .eq('userid', userid) 
+      .single();
+  
+    if (error) {
+      console.error('Error updating user:', error);
+      throw error;
+    }
+    return data;
+  }
+  async fetchUserEmail(userid:any) {
+    console.log('Fetching email from user_profiles...');
+  
+    const { data, error } = await this.supabase
+      .from('users')
+      .select('email')
+      .eq('userid', userid)
+      .single();
+  
+    console.log('Supabase user_profiles Response:', data, error);
+  
+   
+  }
+
+  
   profileinsert(userFormData: any): Observable<any> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     return this.http.post(this.apiurl, userFormData, { headers });

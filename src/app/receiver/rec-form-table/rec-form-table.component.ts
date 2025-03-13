@@ -29,9 +29,12 @@ export class RecFormTableComponent {
     
       this.supabseService.getRecipientForms(this.UserId).subscribe({
         next: (data) => {
-          console.log('Fetched recipients:', data);
-          if (data && Array.isArray(data)) {
-            this.recipients = data;
+          console.log()
+          console.log('Fetched recipients:', data.data);
+          console.log("length:",data.data.length);
+          if (data.data && Array.isArray(data.data)) {
+            this.recipients = data.data;
+            console.log(this.recipients)
           } else {
             this.recipients = []; // Ensure it's an empty array if no data
           }

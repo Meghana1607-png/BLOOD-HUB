@@ -208,15 +208,15 @@ app.post("/receiverforminsert", async (req, res) => {
     console.log(" req.body is EMPTY!");
     return res.status(400).json({ message: "No data received" });
   }
-  const { date, purpose, blood_group, blood_quatity, emergency ,userid,location, name} = req.body;
+  const { date, purpose, email,blood_group, blood_quatity, emergency ,userid,location, name} = req.body;
 
-  if (!date || !purpose || !blood_group || !blood_quatity || !emergency||!userid ||!location ||!name) {
-    console.log(" Missing fields:", { date, purpose, blood_group, blood_quatity, emergency,userid,location,name });
+  if (!date || !purpose || !blood_group ||! email || !blood_quatity || !emergency||!userid ||!location ||!name) {
+    console.log(" Missing fields:", { date, purpose, blood_group, email,blood_quatity, emergency,userid,location,name });
     return res.status(400).json({ message: "Missing required fields" });
   }
   try {
     const { data, error } = await supabase.from("receivers").insert([
-      {name:name, purpose:purpose, blood_group: blood_group, blood_quatity: blood_quatity, date: date, emergency: emergency,userid:userid,location:location }
+      {name:name, purpose:purpose, blood_group: blood_group, email: email,blood_quatity: blood_quatity, date: date, emergency: emergency,userid:userid,location:location }
     ]);
     if (error) throw error;
     res.status(200).json({ message: "Receiver form submitted", data });

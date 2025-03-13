@@ -24,6 +24,7 @@ export class ViewOrgFormComponent {
   selectedOrgId: any;
   userId: any;
 email:any
+bloodGroupDetails: any;
 
   constructor(private supabase:OrgService,private auth:AuthService,private receiver:ReceiverService, private user:ProfileService,private request:RequestsService, private router:Router, private active:ActivatedRoute,private authservice:AuthService){
 
@@ -47,7 +48,7 @@ email:any
         bloodDetails: params['bloodGroupData']
  }
     });
-
+    this.bloodGroupDetails = JSON.parse(this.organization.bloodDetails)
     console.log("bloodgroupdata", this.organization.bloodDetails)
   }
    
@@ -57,7 +58,7 @@ email:any
     email: string;
     phone: string;
     address: string;
-    bloodDetails: any[];
+    bloodDetails: any;
   } = {
     org_id: '',
     name: '',

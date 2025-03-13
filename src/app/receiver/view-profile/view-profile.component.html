@@ -1,10 +1,9 @@
 <div class="max-w-2xl mx-auto p-6 bg-gray-100 rounded-lg shadow-lg">
   <h1 class="text-2xl font-semibold text-center text-red-600 mb-6">User Details</h1>
 
-  <!-- Check if there are users to display -->
   <div *ngIf="users.length > 0; else noUsers">
     <div class="bg-white p-6 rounded-lg shadow-md">
-      <div *ngFor="let user of users" class="mb-6 p-4 bg-gray-50 rounded-lg shadow">
+      <div *ngFor="let user of users" class="relative mb-6 p-4 bg-gray-50 rounded-lg shadow">
         <div class="flex items-center space-x-4 mb-4">
           <div class="w-14 h-14 bg-red-500 rounded-full flex items-center justify-center text-white font-bold text-lg">
             {{ user.name[0] | uppercase }}
@@ -12,11 +11,7 @@
           <h2 class="text-lg font-semibold text-red-700">{{ user.name }}</h2>
         </div>
 
-        <!-- Field Cards -->
         <div class="grid gap-3">
-          <!-- <div class="bg-gray-200 p-3 rounded-md shadow-sm">
-            <span class="text-red-600 font-semibold">Age:</span> {{ user.age }}
-          </div> -->
           <div class="bg-gray-200 p-3 rounded-md shadow-sm">
             <span class="text-red-600 font-semibold">Email:</span> {{ user.email }}
           </div>
@@ -26,10 +21,14 @@
           <div class="bg-gray-200 p-3 rounded-md shadow-sm">
             <span class="text-red-600 font-semibold">Location:</span> {{ user.address }}
           </div>
-          <!-- <div class="bg-gray-200 p-3 rounded-md shadow-sm">
-            <span class="text-red-600 font-semibold">Gender:</span> {{ user.gender }}
-          </div> -->
         </div>
+
+        <!-- Edit Button -->
+        <button 
+          (click)="editProfile(user)"
+          class="absolute top-4 right-4 bg-red-500 text-white px-3 py-2 rounded-md shadow hover:bg-red-700 transition">
+          Edit
+        </button>
       </div>
     </div>
   </div>
@@ -38,4 +37,28 @@
   <ng-template #noUsers>
     <p class="text-center text-gray-500">No user details available.</p>
   </ng-template>
+</div>
+
+<!-- Edit Profile Modal -->
+<div *ngIf="isEditing" class="fixed inset-0 bg-gray-900 bg-opacity-50 flex justify-center items-center">
+  <div class="bg-white p-6 rounded-lg shadow-lg w-96">
+    <h2 class="text-xl font-semibold text-red-600 mb-4">Edit Profile</h2>
+<!-- 
+    <label class="block text-sm font-semibold mb-1">Name:</label>
+    <input [(ngModel)]="editableUser.name" type="text" class="w-full p-2 border rounded mb-3"> -->
+
+    <label class="block text-sm font-semibold mb-1">Email:</label>
+    <input [(ngModel)]="editableUser.email" type="email" class="w-full p-2 border rounded mb-3">
+
+    <label class="block text-sm font-semibold mb-1">Phone:</label>
+    <input [(ngModel)]="editableUser.phno" type="text" class="w-full p-2 border rounded mb-3">
+
+    <label class="block text-sm font-semibold mb-1">Location:</label>
+    <input [(ngModel)]="editableUser.address" type="text" class="w-full p-2 border rounded mb-3">
+
+    <div class="flex justify-end space-x-2 mt-4">
+      <button (click)="isEditing = false" class="px-4 py-2 bg-gray-500 text-white rounded-md hover:bg-gray-700">Cancel</button>
+      <button (click)="saveChanges()" class="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-700">Save</button>
+    </div>
+  </div>
 </div>

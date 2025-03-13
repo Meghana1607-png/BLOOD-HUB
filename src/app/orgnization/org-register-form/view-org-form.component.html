@@ -15,9 +15,9 @@
       <h3 class="mt-6 text-xl font-semibold text-red-600 border-b border-red-300 pb-2">Blood Group Availability</h3>
       <ul class="mt-4 space-y-3">
         <li 
-          *ngFor="let blood of orgDetails?.bloodDetails" 
+          *ngFor="let blood of bloodGroupDetails" 
           class="flex justify-between items-center text-sm text-gray-700 bg-gray-50 border border-gray-200 p-3 rounded-lg shadow-sm">
-          <span class="font-semibold text-red-700">{{ blood?.group }}</span>
+          <span class="font-semibold text-red-700">{{ blood?.bloodGroup }}</span>
           <span class="text-red-600 font-medium">{{ blood?.quantity }} ml</span>
         </li>
       </ul>
@@ -28,7 +28,7 @@
       <button 
         class="bg-red-500 hover:bg-red-600 text-white font-bold py-3 px-6 rounded-lg w-full shadow-lg transition-transform transform hover:scale-105"
         (click)="requestBlood()"
-        routerLink="/rec-dashboard">
+        >
         Request
       </button>
     </div>

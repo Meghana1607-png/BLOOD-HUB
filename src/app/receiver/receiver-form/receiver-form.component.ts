@@ -28,7 +28,8 @@ export class ReceiverFormComponent {
       blood_group: ['', [Validators.required]],
       blood_quatity: ['', [Validators.required, Validators.min(1)]], // New field with validation
       emergency: ['', [Validators.required]],
-      name:['',[Validators.required]]
+      name:['',[Validators.required]],
+      email:['',[Validators.required]]
     });
   }
 

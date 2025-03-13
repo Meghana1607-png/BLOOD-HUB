@@ -21,11 +21,13 @@ export class DashboardComponent {
   c_role:any;
   menu = [
     { path: 'admin/dashboard', label: 'dashboard', icon: 'pi pi-home' },
-    { path: 'receiver/rec-awareness', label: 'awareness', icon: 'pi pi-sitemap' },
-    { path: 'receiver/rprofile', label: 'profile', icon: 'pi pi-user-plus' },
-    // { path: 'admin/teams-table', label: 'teams', icon: 'pi pi-users' },
-    { path: 'receiver/view-rec', label: 'viewrecform', icon: 'pi pi-globe' },
+    { path: 'receiver/view-rec', label: 'paitient-form-details ', icon: 'pi pi-globe' },
     { path: 'receiver/vp', label: 'view-profile', icon: 'pi pi-id-card' },
+    { path: 'receiver/rec-awareness', label: 'awareness', icon: 'pi pi-sitemap' },
+    // { path: 'receiver/rprofile', label: 'profile', icon: 'pi pi-user-plus' },
+    // { path: 'admin/teams-table', label: 'teams', icon: 'pi pi-users' },
+    {path:'receiver/rec-form' ,label:'new form',}
+   
   ]
 
   constructor(private router: Router, private activeroute: ActivatedRoute, private recform:ReceiverService ) {

@@ -27,8 +27,16 @@ export class ReceiverService {
       return from(res)
       }
 
+      getRecipientForms(userId: string): Observable<any> {
+         const res=
+          this.supabase.from('receivers').select('*').eq('userid', userId)
+          .order('created_at', { ascending: false }) 
+        return from(res);
+      }  
     submitReceiverForm(formData: any): Observable<any> {
       const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+      console.log("📡 Calling Supabase API to insert:", formData);
+
       return this.http.post(this.apiurl, JSON.stringify(formData), { headers });
     }
     async getuser() {

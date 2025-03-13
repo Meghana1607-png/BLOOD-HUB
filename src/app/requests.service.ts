@@ -36,22 +36,7 @@ export class RequestsService {
   }
 
 
-  // getOrgIdByName(orgName: string): Observable<any> {
-  //   return new Observable(observer => {
-  //     this.supabase
-  //       .from('organizations')  // Assuming 'organizations' is your table name
-  //       .select('id')  // Only fetching the 'id' column
-  //       .eq('name', orgName)  // Assuming 'name' is the field you use to identify the org
-  //       .single()  // Get the first match (orgName should be unique)
-  //       .then(response => {
-  //         if (response.error) {
-  //           observer.error(response.error.message);
-  //         } else {
-  //           observer.next(response.data);  // Return the org_id
-  //         }
-  //       });
-  //   });
-  // }
+ 
   get auth() {
     return this.supabase.auth;
   }

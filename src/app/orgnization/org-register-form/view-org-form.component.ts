@@ -40,7 +40,7 @@ bloodGroupDetails: any;
 
    
     this.active.queryParams.subscribe((params) => {
-      this.organization = {org_id: params['org_id'] || '',
+      this.organization = {org_id: params['id'] || '',
         name: params['name'] || '',
         email: params['email'] || '',
         phone: params['phone'] || '',
@@ -49,7 +49,7 @@ bloodGroupDetails: any;
  }
     });
     this.bloodGroupDetails = JSON.parse(this.organization.bloodDetails)
-    console.log("bloodgroupdata", this.organization.bloodDetails)
+    console.log("bloodgroupdata", this.organization.org_id)
   }
    
   organization : {
@@ -97,10 +97,10 @@ bloodGroupDetails: any;
   
   async requestBlood() {
     const requestData = {
-      org_id: this.orgId, 
+      org_id: this.organization.org_id, 
       userid: this.userId, 
       email: this.email,
-      status: 'Pending',
+      status: 'pending',
       created_at: new Date().toISOString() // Ensure created field is properly set
     };
   

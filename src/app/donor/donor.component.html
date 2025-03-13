@@ -1,31 +1,189 @@
+<!-- <div class="h-dvh w-dvh flex">
 
-<div class="max-w-md mx-auto bg-white p-6 rounded-2xl shadow-md border-2 border-red-500">
-  <h2 class="text-2xl font-bold text-red-600 text-center mb-4">Donor Form</h2>
-  <form [formGroup]="donorForm" (ngSubmit)="onSubmit()" class="max-w-md mx-auto p-2 rounded-lg mt-6">
+
+  <app-header></app-header>
+
+  <div class="w-full md:w-3/4 lg:w-1/2 xl:w-1/3 mx-auto bg-white p-6 rounded-2xl shadow-md border-2 border-red-500">
+    <h2 class="text-2xl font-bold text-red-600 text-center mb-4">Donor Form</h2>
+    <form
+      [formGroup]="donorForm"
+      (ngSubmit)="onSubmit()"
+      class="max-w-md mx-auto p-2 rounded-lg mt-6 grid grid-cols-1 gap-4"
+      class="grid grid-cols-1 gap-4"
+    >
+      <div class="mb-4">
+        <label class="block text-red-700 font-medium">Name</label>
+        <input
+          type="text"
+          formControlName="Name"
+          class="w-full p-2 border border-red-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
+        />
+      </div>
+      <div class="mb-4">
+        <label class="block text-red-700 font-medium">email</label>
+        <input
+          type="text"
+          formControlName="email"
+          class="w-full p-2 border border-red-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
+        />
+      </div>
+      <div class="mb-4">
+        <label class="block text-red-700 font-medium">Age</label>
+        <input
+          type="number"
+          formControlName="Age"
+          class="w-full p-2 border border-red-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
+        />
+      </div>
+      <div class="mb-4">
+        <label class="block text-red-700 font-medium">Gender</label>
+        <select
+          formControlName="Gender"
+          class="w-full p-2 border border-red-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
+        >
+          <option value="">Select Gender</option>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+      <div class="mb-4">
+        <label class="block text-red-700 font-medium">Blood Group</label>
+        <select
+          formControlName="BloodGroup"
+          class="w-full p-2 border border-red-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
+        >
+          <option value="">Select Blood Group</option>
+          <option value="A+">A+</option>
+          <option value="A-">A-</option>
+          <option value="B+">B+</option>
+          <option value="B-">B-</option>
+          <option value="O+">O+</option>
+          <option value="O-">O-</option>
+          <option value="AB+">AB+</option>
+          <option value="AB-">AB-</option>
+        </select>
+      </div>
+      <div class="mb-4">
+        <label class="block text-red-700 font-medium">Phone Number</label>
+        <input
+          type="tel"
+          formControlName="Mobile_Number"
+          class="w-full p-2 border border-red-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
+        />
+      </div>
+      <div class="mb-4">
+        <label class="block text-red-700 font-medium">Location</label>
+        <input
+          type="text"
+          formControlName="location"
+          class="w-full p-2 border border-red-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
+          placeholder="Enter your city or area"
+        />
+      </div>
+      <div class="mb-4">
+        <label class="block text-red-700 font-medium">Last Donated Date</label>
+        <input
+          type="date"
+          formControlName="LastDonatedDate"
+          class="w-full p-2 border border-red-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
+        />
+      </div>
+      <div class="mb-4">
+        <label class="block text-red-700 font-medium">Health Issues</label>
+        <textarea
+          formControlName="HealthIssues"
+          class="w-full p-2 border border-red-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
+          rows="3"
+        ></textarea>
+      </div>
+      <button
+        type="submit"
+        class="w-full bg-red-600 text-white font-bold py-2 rounded-md hover:bg-red-700"
+      >
+        Submit
+      </button>
+    </form>
+  </div>
+</div> -->
+
+<div class="h-dvh w-dvh flex">
+
+
+  <app-header></app-header>
+
+<div class="max-w-md mx-auto bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 border-2 border-gray-100">
+  <h2 class="text-2xl font-bold mb-4 text-center text-red-600">Patient Details</h2>
+  <form [formGroup]="donorForm" (ngSubmit)="onSubmit()">
     <div class="mb-4">
-      <label class="block text-red-700 font-medium">Name</label>
-      <input type="text" formControlName="Name" class="w-full p-2 border border-red-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500">
+      <label class="block text-gray-700 text-sm font-bold mb-2" for="name"> Name </label>
+      <input
+        type="text"
+        id="name"
+        formControlName="name"
+        placeholder="Enter the name"
+        class="shadow appearance-none border-2 border-red-200 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+      />
+      <p *ngIf="f?.['name']?.touched && f?.['name']?.invalid" class="text-red-5200 text-xs italic">
+        Name is required.
+      </p>
     </div>
+
     <div class="mb-4">
-      <label class="block text-red-700 font-medium">email</label>
-      <input type="text" formControlName="email" class="w-full p-2 border border-red-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500">
+      <label class="block text-gray-700 text-sm font-bold mb-2" for="name"> Email </label>
+      <input
+        type="text"
+        id="email"
+        formControlName="email"
+        placeholder="Enter the email"
+        class="shadow appearance-none border-2 border-red-200 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+      />
+      <p *ngIf="f?.['email']?.touched && f?.['email']?.invalid" class="text-red-5200 text-xs italic">
+        email is required.
+      </p>
     </div>
-    <div class="mb-4">    
-      <label class="block text-red-700 font-medium">Age</label>
-      <input type="number" formControlName="Age" class="w-full p-2 border border-red-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500">
-    </div>
+
     <div class="mb-4">
-      <label class="block text-red-700 font-medium">Gender</label>
-      <select formControlName="Gender" class="w-full p-2 border border-red-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500">
-        <option value="">Select Gender</option>
-        <option value="Male">Male</option>
-        <option value="Female">Female</option>
-        <option value="Other">Other</option>
+      <label class="block text-gray-700 text-sm font-bold mb-2" for="age">
+        Age
+      </label>
+      <input
+        type="number"
+        id="age"
+        formControlName="age"
+        class="shadow appearance-none border-2 border-red-200 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+        placeholder="Enter age"
+      />
+      <p *ngIf="f?.['age']?.touched && f?.['age']?.invalid" class="text-red-200 text-xs italic">
+        Valid age is required.
+      </p>
+    </div>
+
+    <div class="mb-4">
+      <label class="block text-gray-700 text-sm font-bold mb-2" for="gender"> Gender </label>
+      <select
+        id="gender"
+        formControlName="gender"
+        class="shadow appearance-none border-2 border-red-200 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+      >
+        <option value="">Select gender</option>
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+        <option value="others">Others</option>
       </select>
+      <p *ngIf="f?.['gender']?.touched && f?.['gender']?.invalid" class="text-red-200 text-xs italic">
+        Gender is required.
+      </p>
     </div>
+
+    <!-- Blood Group -->
     <div class="mb-4">
-      <label class="block text-red-700 font-medium">Blood Group</label>
-      <select formControlName="BloodGroup" class="w-full p-2 border border-red-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500">
+      <label class="block text-gray-700 text-sm font-bold mb-2" for="blood_group"> Blood Group </label>
+      <select
+        id="blood_group"
+        formControlName="blood_group"
+        class="shadow appearance-none border-2 border-red-200 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+      >
         <option value="">Select Blood Group</option>
         <option value="A+">A+</option>
         <option value="A-">A-</option>
@@ -36,24 +194,99 @@
         <option value="AB+">AB+</option>
         <option value="AB-">AB-</option>
       </select>
+      <p *ngIf="f?.['blood_group']?.touched && f?.['blood_group']?.invalid" class="text-red-200 text-xs italic">
+        Blood Group is required.
+      </p>
     </div>
+
     <div class="mb-4">
-      <label class="block text-red-700 font-medium">Phone Number</label>
-      <input type="tel" formControlName="Mobile_Number" class="w-full p-2 border border-red-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500">
+      <label class="block text-gray-700 text-sm font-bold mb-2" for="blood_Quantity">
+        Blood Quantity
+      </label>
+      <input
+        type="number"
+        id="blood_Quantity"
+        formControlName="blood_Quantity"
+        class="shadow appearance-none border-2 border-red-200 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+        placeholder="Enter Blood Quantity"
+      />
+      <p *ngIf="f?.['blood_Quantity']?.touched && f?.['blood_Quantity']?.invalid" class="text-red-200 text-xs italic">
+        Valid Blood Quantity is required.
+      </p>
     </div>
+
     <div class="mb-4">
-      <label class="block text-red-700 font-medium">Location</label>
-      <input type="text" formControlName="location" class="w-full p-2 border border-red-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500" placeholder="Enter your city or area">
+      <label class="block text-gray-700 text-sm font-bold mb-2" for="phone">
+        Phone Number
+      </label>
+      <input
+        type="number"
+        id="phone"
+        formControlName="phone"
+        class="shadow appearance-none border-2 border-red-200 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+        placeholder="Enter phone number"
+      />
+      <p *ngIf="f?.['phone']?.touched && f?.['phone']?.invalid" class="text-red-200 text-xs italic">
+        Valid phone number is required.
+      </p>
     </div>
+    
+
+    <!-- Last Date to Receive Blood -->
     <div class="mb-4">
-      <label class="block text-red-700 font-medium">Last Donated Date</label>
-      <input type="date" formControlName="LastDonatedDate" class="w-full p-2 border border-red-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500">
+      <label class="block text-gray-700 text-sm font-bold mb-2" for="date"> Last Date to Donate blood </label>
+      <input
+        type="date"
+        id="date"
+        formControlName="date"
+        class="shadow appearance-none border-2 border-red-200 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+      />
+      <p *ngIf="f?.['date']?.touched && f?.['date']?.invalid" class="text-red-200 text-xs italic">
+        Date is required.
+      </p>
     </div>
+
+    <!-- health_issues -->
     <div class="mb-4">
-      <label class="block text-red-700 font-medium">Health Issues</label>
-      <textarea formControlName="HealthIssues" class="w-full p-2 border border-red-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500" rows="3"></textarea>
+      <label class="block text-gray-700 text-sm font-bold mb-2" for="health_issues"> Health issues </label>
+      <input
+        type="text"
+        id="health_issues"
+        formControlName="health_issues"
+        placeholder="Reason for blood"
+        class="shadow appearance-none border-2 border-red-200 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+      />
+      <p *ngIf="f?.['health_issues']?.touched && f?.['health_issues']?.invalid" class="text-red-200 text-xs italic">
+        This is required field.
+      </p>
     </div>
-    <button type="submit" class="w-full bg-red-600 text-white font-bold py-2 rounded-md hover:bg-red-700"
-   >Submit</button>
+
+    <!-- Location -->
+    <div class="mb-4">
+      <label class="block text-gray-700 text-sm font-bold mb-2" for="location"> Location </label>
+      <input
+        type="text"
+        id="location"
+        formControlName="location"
+        placeholder="Address"
+        class="shadow appearance-none border-2 border-red-200 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+      />
+      <p *ngIf="f?.['location']?.touched && f?.['location']?.invalid" class="text-red-200 text-xs italic">
+        Location is required.
+      </p>
+    </div>
+
+    <!-- Submit Button -->
+    <div class="flex items-center justify-between">
+      <button
+        class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ml-80"
+        type="submit"
+        [disabled]="donorForm.invalid"
+        (click)="onSubmit()"
+      >
+        Next
+      </button>
+    </div>
   </form>
+</div>
 </div>

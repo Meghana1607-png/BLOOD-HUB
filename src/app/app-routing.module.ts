@@ -8,7 +8,7 @@ import { SigninComponent } from './signin/signin.component';
 import { DonorSigninComponent } from './donor-signin/donor-signin.component';
 
 const routes: Routes = [
-  {path: 'donor1', loadChildren: () => import('./donor/donor.module').then(m => m.DonorModule) }, 
+  {path: 'donor', loadChildren: () => import('./donor/donor.module').then(m => m.DonorModule) }, 
   {path: 'org', loadChildren: () => import('./orgnization/orgnization.module').then(m => m.OrgnizationModule) },
   {path:'receiver',loadChildren:() => import('./receiver/receiver.module').then(m => m.ReceiverModule)},
   {path:'app',component:AppComponent },

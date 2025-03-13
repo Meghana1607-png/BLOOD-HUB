@@ -11,6 +11,9 @@ import { SignUpComponent } from './sign-up/sign-up.component';
 import { DonorVieworgComponent } from './donor-vieworg/donor-vieworg.component';
 import { DonorOrglistComponent } from './donor-orglist/donor-orglist.component';
 import { ViewProfileComponent } from './view-profile/view-profile.component';
+import { HeaderComponent } from './header/header.component';
+import { OrgListComponent } from './org-list/org-list.component';
+import { DonorViewOrgComponent } from './donor-view-org/donor-view-org.component';
 
 
 @NgModule({
@@ -22,7 +25,10 @@ import { ViewProfileComponent } from './view-profile/view-profile.component';
     SignUpComponent,
     DonorVieworgComponent,
     DonorOrglistComponent,
-    ViewProfileComponent
+    ViewProfileComponent,
+    HeaderComponent,
+    OrgListComponent,
+    DonorViewOrgComponent
   ],
   imports: [
     CommonModule,

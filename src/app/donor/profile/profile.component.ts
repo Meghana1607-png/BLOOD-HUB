@@ -112,10 +112,10 @@ submitForm() {
   console.log('Donor data:', this.donor);
 
   this.donor.Donorinsert(this.donor).subscribe({
-    next: (response) => {
+    next: (response: any) => {
       console.log('Donor added successfully', response);
     },
-    error: (error) => {
+    error: (error : any) => {
       console.error('Error adding donor:', error);
       if (error.status === 500) {
         console.error('Internal Server Error. Check the backend for details.');

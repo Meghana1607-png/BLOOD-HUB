@@ -12,6 +12,7 @@ import { ViewProfileComponent } from './view-profile/view-profile.component';
 import { RecRequestsComponent } from './rec-requests/rec-requests.component';
 import { VeiwRecFormComponent } from './veiw-rec-form/veiw-rec-form.component';
 import { HeaderComponent } from './header/header.component';
+import { RecHeaderComponent } from './rec-header/rec-header.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { HeaderComponent } from './header/header.component';
     ViewProfileComponent,
     RecRequestsComponent,
     VeiwRecFormComponent,
-    HeaderComponent
+    HeaderComponent,
+    RecHeaderComponent
   ],
   imports: [
     CommonModule,

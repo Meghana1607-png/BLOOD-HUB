@@ -13,21 +13,17 @@ export class HeaderSideBarComponent {
   showConfirmLogoutPopup = false;
   org: any;
   organisation: any;
+  organizationProfile: any;
+  bloodGroupsArray: any;
   constructor(
     private router: Router,
     private activeroute: ActivatedRoute,
     private orgService: OrgService
   ) {
     this.userId = localStorage.getItem('userId');
-    this.org = localStorage.getItem('organisation');
-    if (this.org) {
-      this.organisation = JSON.parse(this.org);
-    }
-    console.log(
-      'organisation details in sending message module',
-      this.organisation
-    );
+    console.log('userid', this.userId);
   }
+
   menu = [
     { path: 'org-dashboard', label: 'Blood Hub', icon: 'pi pi-users' },
     { path: 'org/donorsList', label: 'Donors list', icon: 'pi pi-users' },
@@ -69,6 +65,30 @@ export class HeaderSideBarComponent {
     },
     { path: 'org/feedbacks', label: 'feedbacks', icon: 'pi pi-users' },
   ];
+
+  ngOnInit(): void {
+    this.fetchOrganizationProfile(this.userId);
+  }
+  fetchOrganizationProfile(userId: string): void {
+    this.orgService.fetchProfileByOrg(userId).subscribe({
+      next: (data) => {
+        this.organizationProfile = data[0];
+        localStorage.setItem(
+          'organisation',
+          JSON.stringify(this.organizationProfile)
+        );
+        console.log('OrganizationProfile:', this.organizationProfile);
+        if (this.organizationProfile && this.organizationProfile.blood_groups) {
+          this.bloodGroupsArray = JSON.parse(
+            this.organizationProfile.blood_groups
+          );
+        }
+      },
+      error: (err) => {
+        console.error('Error fetching organization profile:', err);
+      },
+    });
+  }
 
   show_slidebar() {
     this.orgService.is_slidebar = true;

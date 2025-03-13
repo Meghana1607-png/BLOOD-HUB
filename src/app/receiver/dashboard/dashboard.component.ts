@@ -21,11 +21,13 @@ export class DashboardComponent {
   c_role:any;
   menu = [
     { path: 'admin/dashboard', label: 'dashboard', icon: 'pi pi-home' },
+    { path: 'receiver/view-rec', label: 'paitient-form-details ', icon: 'pi pi-globe' },
+    { path: 'receiver/vp', label: 'profile-details', icon: 'pi pi-id-card' },
     { path: 'receiver/rec-awareness', label: 'awareness', icon: 'pi pi-sitemap' },
-    { path: 'receiver/rprofile', label: 'profile', icon: 'pi pi-user-plus' },
+    { path: 'receiver/rec-table', label: 'receiverForms-table', icon: 'pi pi-user-plus' },
     // { path: 'admin/teams-table', label: 'teams', icon: 'pi pi-users' },
-    { path: 'receiver/view-rec', label: 'viewrecform', icon: 'pi pi-globe' },
-    { path: 'receiver/vp', label: 'view-profile', icon: 'pi pi-id-card' },
+    {path:'receiver/rec-form' ,label:'new form',}
+   
   ]
 
   constructor(private router: Router, private activeroute: ActivatedRoute, private recform:ReceiverService ) {
@@ -57,6 +59,9 @@ export class DashboardComponent {
   show_slidebar() {
     this.is_slidebar = true;
   }
+  closeDropdown() {
+    this.showDropdown = false;
+  }
 
   hide_slidebar() {
     this.is_slidebar = false;
@@ -65,10 +70,11 @@ export class DashboardComponent {
     console.log("Button clicked!")
   }
 
-
-  toggleDropdown() {
+  toggleDropdown(event: Event) {
+    event.stopPropagation(); // Prevents click event from closing immediately
     this.showDropdown = !this.showDropdown;
   }
+  
 
   selectRole(role: string) {
     console.log(`Selected role: ${role}`);// Handle role selection logic here

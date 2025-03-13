@@ -1,0 +1,46 @@
+<div class="max-w-4xl mx-auto p-6 bg-white shadow-lg rounded-2xl border border-gray-300">
+    <h2 class="text-xl font-semibold text-center text-red-600 mb-4">
+      Recipient Form Details
+    </h2>
+  
+    <div *ngIf="recipients && recipients.length > 0; else noData">
+      <div class="overflow-x-auto">
+        <table class="min-w-full border border-gray-300 rounded-lg shadow-md">
+          <thead class="bg-red-600 text-white">
+            <tr>
+              <!-- <th class="py-2 px-4 border">Blood Group</th> -->
+              <!-- <th class="py-2 px-4 border">Quantity (ml)</th> -->
+              <!-- <th class="py-2 px-4 border">Location</th> -->
+              <th class="py-2 px-4 border">Purpose</th>
+              <th class="py-2 px-4 border">Emergency Level</th>
+              <th class="py-2 px-4 border">Created At</th>
+              <th class="py-2 px-4 border">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let form of recipients" class="text-center bg-gray-100 hover:bg-gray-200">
+              <!-- <td class="py-2 px-4 border">{{ form.blood_group }}</td>
+              <td class="py-2 px-4 border">{{ form.blood_quatity }}</td>
+              <td class="py-2 px-4 border">{{ form.location }}</td> -->
+              <td class="py-2 px-4 border">{{ form.purpose }}</td>
+              <td class="py-2 px-4 border">{{ form.emergency }}</td>
+              <td class="py-2 px-4 border">{{ form.created_at | date: 'medium' }}</td>
+              <td class="py-2 px-4 border">
+                <button class="px-3 py-1 bg-red-600 text-white rounded-lg hover:bg-red-700"
+                  (click)="viewDetails(form)"
+                  routerLink="/view-rec">
+                  View
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  
+    <!-- If no recipient forms are found -->
+    <ng-template #noData>
+      <p class="text-red-500 text-center mt-4">No recipient forms found.</p>
+    </ng-template>
+  </div>
+  

@@ -11,14 +11,13 @@ export class EditProfileComponent {
   userId: any;
   bloodGroupsArray: any[] = [];
   org: any;
-  newBloodGroup: string = ''; // For adding new blood group
-  newBloodGroupQuantity: number = 0; // For adding new blood group quantity
+  newBloodGroup: string = ''; 
+  newBloodGroupQuantity: number = 0; 
 
-  // Error messages
   nameError: string = '';
   emailError: string = '';
   phoneError: string = '';
-  bloodGroupError: string = ''; // New error message for blood group
+  bloodGroupError: string = ''; 
   constructor(
     private orgService: OrgService,
     private route: ActivatedRoute,
@@ -78,7 +77,7 @@ export class EditProfileComponent {
     this.nameError = '';
     this.emailError = '';
     this.phoneError = '';
-    this.bloodGroupError = ''; // Reset blood group error message
+    this.bloodGroupError = '';
 
     const nameValid =
       this.organizationProfile.organization.name &&
@@ -106,7 +105,7 @@ export class EditProfileComponent {
   }
 
   validatePhone(phone: string): boolean {
-    const phonePattern = /^[0-9]{10,}$/; // At least 10 digits
+    const phonePattern = /^[0-9]{10,}$/;
     return phonePattern.test(phone);
   }
 

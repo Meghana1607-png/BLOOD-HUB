@@ -24,6 +24,7 @@ export class ViewOrgFormComponent {
   selectedOrgId: any;
   userId: any;
 email:any
+bloodGroupDetails: any;
 
   constructor(private supabase:OrgService,private auth:AuthService,private receiver:ReceiverService, private user:ProfileService,private request:RequestsService, private router:Router, private active:ActivatedRoute,private authservice:AuthService){
 
@@ -39,7 +40,7 @@ email:any
 
    
     this.active.queryParams.subscribe((params) => {
-      this.organization = {org_id: params['org_id'] || '',
+      this.organization = {org_id: params['id'] || '',
         name: params['name'] || '',
         email: params['email'] || '',
         phone: params['phone'] || '',
@@ -47,8 +48,8 @@ email:any
         bloodDetails: params['bloodGroupData']
  }
     });
-
-    console.log("bloodgroupdata", this.organization.bloodDetails)
+    this.bloodGroupDetails = JSON.parse(this.organization.bloodDetails)
+    console.log("bloodgroupdata", this.organization.org_id)
   }
    
   organization : {
@@ -57,7 +58,7 @@ email:any
     email: string;
     phone: string;
     address: string;
-    bloodDetails: any[];
+    bloodDetails: any;
   } = {
     org_id: '',
     name: '',
@@ -96,7 +97,7 @@ email:any
   
   async requestBlood() {
     const requestData = {
-      org_id: this.orgId, 
+      org_id: this.organization.org_id, 
       userid: this.userId, 
       email: this.email,
       status: 'pending',

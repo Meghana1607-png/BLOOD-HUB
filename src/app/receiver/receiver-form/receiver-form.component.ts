@@ -15,6 +15,8 @@ export class ReceiverFormComponent {
   organizations: any[] = [];
   data1:any
   org:any
+  isSubmitting = false; // Flag to track submission
+
 
   patientForm: FormGroup;
 
@@ -26,7 +28,8 @@ export class ReceiverFormComponent {
       blood_group: ['', [Validators.required]],
       blood_quatity: ['', [Validators.required, Validators.min(1)]], // New field with validation
       emergency: ['', [Validators.required]],
-      name:['',[Validators.required]]
+      name:['',[Validators.required]],
+      email:['',[Validators.required]]
     });
   }
 
@@ -49,7 +52,12 @@ export class ReceiverFormComponent {
           const userFormData = {
           userid: userId,
           ...this.patientForm.value
-        };  
+        };
+        if (this.isSubmitting) return; // Stop duplicate submissions
+        this.isSubmitting = true;
+      
+        console.log(" Submitting form...");
+        
   
       this.receiverFormService.submitReceiverForm(userFormData).subscribe({
         next: (response) => {
@@ -57,11 +65,15 @@ export class ReceiverFormComponent {
           alert(response.message);
           this.router.navigateByUrl('/org-list');
           this.patientForm.reset();
+          this.isSubmitting = false; 
+
         },
         error: (error) => {
           console.log('Form submission failed!');
           console.error('Error submitting the form:', error.message);
           alert('An error occurred while submitting the form.');
+          this.isSubmitting = false; 
+
         },
       });
     }

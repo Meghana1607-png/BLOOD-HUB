@@ -8,6 +8,7 @@ import { RecAwarenessComponent } from './rec-awareness/rec-awareness.component';
 import { ViewProfileComponent } from './view-profile/view-profile.component';
 import { RecRequestsComponent } from './rec-requests/rec-requests.component';
 import { VeiwRecFormComponent } from './veiw-rec-form/veiw-rec-form.component';
+import { RecFormTableComponent } from './rec-form-table/rec-form-table.component';
 
 const routes: Routes = [{ path: '', component: ReceiverComponent },
 {
@@ -22,6 +23,8 @@ const routes: Routes = [{ path: '', component: ReceiverComponent },
   path: 'rec-form',
 
   component: ReceiverFormComponent
+},{
+  path:'rec-table',component:RecFormTableComponent
 },
 {path:'vp',component:ViewProfileComponent},
 { path: 'rec-awareness', component: RecAwarenessComponent },

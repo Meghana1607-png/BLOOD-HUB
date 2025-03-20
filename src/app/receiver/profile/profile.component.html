@@ -1,3 +1,16 @@
+
+<div class="h-dvh w-dvh flex">
+  <app-header-bar></app-header-bar>
+  <!-- Header -->
+     <!-- Main Content -->
+  <div class="mt-16 w-full ml-14 transition-all duration-300">
+    <!-- Popup -->
+    <div
+      class="fixed z-10 top-150 text-2xl left-100 w-full py-2 bg-red-600 text-white text-center"
+      *ngIf="showPopup"
+    >
+      {{ popupMessage }}
+    </div>
 <div class="max-w-2xl mx-auto p-6 bg-white rounded-lg shadow-lg mt-24">
   <h1 class="text-3xl font-semibold text-center text-red-600 mb-6">Receiver Form</h1>
 
@@ -78,4 +91,6 @@
       </button>
     </form>
   </div>
+</div>
+</div>
 </div>

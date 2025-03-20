@@ -23,6 +23,10 @@ export class ViewOrgFormComponent {
   userId: any;
   email: any;
   bloodGroupDetails: any;
+  receiverDetails: any;
+  user_id: any;
+  showPopup: boolean = false; // Declare showPopup variable
+  popupMessage: string = '';
 
   constructor(
     private supabase: OrgService,
@@ -37,7 +41,7 @@ export class ViewOrgFormComponent {
     this.selectedOrgId = this.supabase.fetchorgform('id');
     this.userId = this.user.form('userId');
     this.userId = localStorage.getItem('authId');
-    this.userId = localStorage.getItem('userId');
+    this.user_id = localStorage.getItem('authId');
     this.getUserID();
   }
 
@@ -56,6 +60,17 @@ export class ViewOrgFormComponent {
     });
     this.bloodGroupDetails = JSON.parse(this.organization.bloodDetails);
     console.log('bloodgroupdata', this.organization.org_id);
+
+    console.log('kjkh', this.user_id);
+    this.request.fetchReceiverDetails(this.user_id).subscribe({
+      next: (data: any) => {
+        this.receiverDetails = data;
+        console.log('receiverDetails', this.receiverDetails);
+      },
+      error: (err: any) => {
+        console.error('Error fetching receiver', err);
+      },
+    });
   }
 
   organization: {
@@ -74,10 +89,10 @@ export class ViewOrgFormComponent {
     bloodDetails: [],
   };
 
-  users: any[] = [];
+  users: any;
   async getUserID() {
     this.users = await this.user.form(this.userId);
-    console.log(this.users);
+    console.log('dkmnfkj', this.users);
   }
 
   getOrgid(): void {
@@ -95,6 +110,7 @@ export class ViewOrgFormComponent {
     const {
       data: { user },
     } = await this.auth.getUser();
+    console.log(user.email);
     if (user) {
       this.userId = user.id; // Assign the correct user ID
       this.email = user.email; // Assign the correct user email
@@ -104,10 +120,11 @@ export class ViewOrgFormComponent {
   }
 
   async requestBlood() {
+    console.log('email,', this.email);
     const requestData = {
       org_id: this.organization.org_id,
-      userid: this.userId,
-      email: this.email,
+      userid: this.receiverDetails[0].recid,
+      email: this.users.email,
       status: 'pending',
       created_at: new Date().toISOString(), // Ensure created field is properly set
     };
@@ -116,7 +133,14 @@ export class ViewOrgFormComponent {
 
     this.request.submitRequest(requestData).subscribe({
       next: (data) => {
-        console.log('Request sent successfully!');
+       
+        this.showPopup = true;
+          this.popupMessage = `request sent successfully!`;
+          setTimeout(() => {
+            this.showPopup = false;
+          }, 2500);
+          this.router.navigate(['/rec-dashboard']);
+           return;
       },
       error: (err) => {
         console.error('Error sending request:', err);

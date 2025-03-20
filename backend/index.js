@@ -201,6 +201,27 @@ app.get(
   }
 );
 
+app.put("/donor/setReceiverFalse", async (req, res) => {
+  console.log("hiiiii");
+
+  console.log("req.body.latestReceiver", req.body.latestReceiever);
+  try {
+    const { data: updatedData, error: updateError } = await supabase
+      .from("receivers")
+      .update({ latestReceiver: "false" })
+      .eq("userid", req.body.latestReceiever);
+
+    if (updateError) {
+      console.log(updateError);
+      return res.status(400).json({ error: updateError.message });
+    }
+    res.json(updatedData);
+  } catch (err) {
+    console.error("Unexpected error:", err);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
 app.put("/donor/setDonorFalse", async (req, res) => {
   console.log("hiiiii");
 
@@ -241,6 +262,8 @@ app.post("/receiverforminsert", async (req, res) => {
     name,
   } = req.body;
 
+  console.log("email", email);
+
   if (
     !date ||
     !purpose ||
@@ -277,6 +300,7 @@ app.post("/receiverforminsert", async (req, res) => {
         emergency: emergency,
         userid: userid,
         location: location,
+        latestReceiver: "true",
       },
     ]);
     if (error) throw error;
@@ -829,6 +853,27 @@ app.get("/donor/fetchDonorDetails/:id", async (req, res) => {
   }
 });
 
+app.get("/receiver/fetchReceiverDetails/:id", async (req, res) => {
+  const { id } = req.params;
+  try {
+    console.log("id in fetchReceiverDetails - ", id);
+    const { data, error } = await supabase
+      .from("receivers")
+      .select("*")
+      .eq("userid", id)
+      .eq("latestReceiver", "true");
+
+    if (error) {
+      console.log(error);
+      return res.status(400).json({ error: error.message });
+    }
+    res.json(data);
+  } catch (err) {
+    console.error("Unexpected error:", err);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
 app.get("/org/donors/donorrequests/:id", async (req, res) => {
   const { id } = req.params;
   try {
@@ -941,7 +986,7 @@ app.get("/org/ReceiverDetails/:id", async (req, res) => {
     const { data, error } = await supabase
       .from("receivers")
       .select("*")
-      .eq("userid", id);
+      .eq("recid", id);
 
     if (error) {
       console.log(error);

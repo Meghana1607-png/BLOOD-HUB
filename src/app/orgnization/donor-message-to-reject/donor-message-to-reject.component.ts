@@ -16,6 +16,8 @@ export class DonorMessageToRejectComponent {
   requestDonorData: any;
   organisation: any;
   org: any;
+  showPopup: boolean = false; // Declare showPopup variable
+  popupMessage: string = '';
 
   constructor(
     private orgService: OrgService,
@@ -96,6 +98,12 @@ export class DonorMessageToRejectComponent {
           this.requestDonorData = data;
           this.router.navigate(['/org-dashboard']);
           console.log('requestDonorData:', this.requestDonorData);
+          this.showPopup = true;
+          this.popupMessage = `request sent successfully!`;
+          setTimeout(() => {
+            this.showPopup = false;
+          }, 2500);
+          return;
         },
         error: (err: any) => {
           console.error('error in requesting the donor', err);

@@ -28,6 +28,7 @@ import { IndividualFeedbackComponent } from './individual-feedback/individual-fe
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { DonorRequestsComponent } from './donor-requests/donor-requests.component';
 import { DonorFormRequestComponent } from './donor-form-request/donor-form-request.component';
+import { ReceieverHeaderComponent } from './receiever-header/receiever-header.component';
 
 @NgModule({
   declarations: [
@@ -57,6 +58,7 @@ import { DonorFormRequestComponent } from './donor-form-request/donor-form-reque
     EditProfileComponent,
     DonorRequestsComponent,
     DonorFormRequestComponent,
+    ReceieverHeaderComponent,
   ],
   imports: [
     CommonModule,

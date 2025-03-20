@@ -12,6 +12,8 @@ export class RecFormTableComponent {
   recipientForms: any[] = []; 
   recipients: any[] = []; // Stores recipient form data
  UserId: string | null = null;
+ showPopup: boolean = false; // Declare showPopup variable
+ popupMessage: string = '';
 
   constructor(private supabseService: ReceiverService) {
     this.UserId=localStorage.getItem('authId')

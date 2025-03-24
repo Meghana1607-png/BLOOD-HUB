@@ -20,27 +20,20 @@
           {{ c_role }}
         </p>
       </div>
-     <!-- switchRole -->
-     <div class="relative inline-block text-left">
-      <button
-        class="px-4 py-2 bg-red-700 text-white rounded-lg hover:bg-red-500 transition-colors duration-300"
-        (click)="toggleDropdown($event)"
-      >
-        Switch Role
-      </button>
-      <!-- Dropdown Menu -->
-      <div
-        *ngIf="showDropdown"
-        class="absolute mt-2 w-40 bg-white rounded-lg shadow-lg z-10"
-      >
-        <button
-          class="w-full px-4 py-2 text-left text-gray-700 hover:bg-gray-100 transition-colors duration-300"
-          (click)="selectRole('donors')"
-          routerLink="/don"  >
-          Donors
+      <!-- switchRole -->
+      <div class="relative inline-block text-left">
+        <button class="px-4 py-2 bg-red-700 text-white rounded-lg hover:bg-red-500 transition-colors duration-300"
+          (click)="toggleDropdown($event)">
+          Switch Role
         </button>
+        <!-- Dropdown Menu -->
+        <div *ngIf="showDropdown" class="absolute mt-2 w-40 bg-white rounded-lg shadow-lg z-10">
+          <button class="w-full px-4 py-2 text-left text-gray-700 hover:bg-gray-100 transition-colors duration-300"
+            (click)="selectRole('donors')" routerLink="/don">
+            Donors
+          </button>
+        </div>
       </div>
-    </div>
     </div>
   </div>
 
@@ -56,42 +49,37 @@
       </span>
     </div>
   </nav>
-  <div
-  class="h-[6cm] w-[6cm] bg-white shadow-lg rounded-lg flex flex-col justify-center items-center p-4 ml-60 mt-20"
->
-  <h2 class=" h-[6cm] w-[6cm] text-center text-sm font-semibold text-gray-800">
-    Make Request to Org
-  </h2>
-  <button
-    class="mt-4 px-2 py-1 bg-red-700 text-white text-sm font-medium rounded hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-400"
-    routerLink="/rec-form"
-  >
-    Open
-  </button>
-</div>
-<div
-  class="h-[6cm] w-[6cm] bg-white shadow-lg rounded-lg flex flex-col justify-center items-center p-5 ml-60 mt-20">
-  <h2 class="text-center text-sm font-semibold text-gray-800">
-    Profile details
-  </h2>
-  <button
-    class="mt-4 px-2 py-1 bg-red-700 text-white text-sm font-medium rounded hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-400"
-    routerLink="/vp" >
-    view
-  </button>
-</div>
+  <div class="h-[6cm] w-[6cm] bg-white shadow-lg rounded-lg flex flex-col justify-center items-center p-4 ml-60 mt-20">
+    <h2 class=" h-[6cm] w-[6cm] text-center text-sm font-semibold text-gray-800">
+      Make Request to Org
+    </h2>
+    <button
+      class="mt-4 px-2 py-1 bg-red-700 text-white text-sm font-medium rounded hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-400"
+      routerLink="/rec-form">
+      Open
+    </button>
+  </div>
+  <div class="h-[6cm] w-[6cm] bg-white shadow-lg rounded-lg flex flex-col justify-center items-center p-5 ml-60 mt-20">
+    <h2 class="text-center text-sm font-semibold text-gray-800">
+      Profile details
+    </h2>
+    <button
+      class="mt-4 px-2 py-1 bg-red-700 text-white text-sm font-medium rounded hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-400"
+      routerLink="/vp">
+      view
+    </button>
+  </div>
 
-<div
-class="h-[6cm] w-[6cm] bg-white shadow-lg rounded-lg flex flex-col justify-center items-center p-5 ml-60 mt-20">
-<h2 class="text-center text-sm font-semibold text-gray-800">
-  awareness details
-</h2>
-<button
-  class="mt-4 px-2 py-1 bg-red-700 text-white text-sm font-medium rounded hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-400"
-  routerLink="/rec-awareness" >
-  view
-</button>
-</div>
+  <div class="h-[6cm] w-[6cm] bg-white shadow-lg rounded-lg flex flex-col justify-center items-center p-5 ml-60 mt-20">
+    <h2 class="text-center text-sm font-semibold text-gray-800">
+      awareness details
+    </h2>
+    <button
+      class="mt-4 px-2 py-1 bg-red-700 text-white text-sm font-medium rounded hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-400"
+      routerLink="/rec-awareness">
+      view
+    </button>
+  </div>
 
   <div class="mt-16 w-full ml-14 transition-all duration-300">
   </div>

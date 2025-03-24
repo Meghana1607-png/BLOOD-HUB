@@ -21,7 +21,7 @@ export class DashboardComponent {
   c_role:any;
   menu = [
     { path: 'admin/dashboard', label: 'dashboard', icon: 'pi pi-home' },
-    { path: 'receiver/view-rec', label: 'paitient-form-details ', icon: 'pi pi-globe' },
+    { path: 'receiver/view-rec', label: 'paitient-form-report ', icon: 'pi pi-globe' },
     { path: 'receiver/vp', label: 'profile-details', icon: 'pi pi-id-card' },
     { path: 'receiver/rec-awareness', label: 'awareness', icon: 'pi pi-sitemap' },
     { path: 'receiver/rec-table', label: 'receiverForms-table', icon: 'pi pi-user-plus' },

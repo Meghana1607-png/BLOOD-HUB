@@ -16,6 +16,8 @@ export class DonorMessageToRejectComponent {
   requestDonorData: any;
   organisation: any;
   org: any;
+  showPopup: boolean = false; // Declare showPopup variable
+  popupMessage: string = '';
 
   constructor(
     private orgService: OrgService,
@@ -27,6 +29,7 @@ export class DonorMessageToRejectComponent {
     this.currentPath = this.presentPath.split('?')[0].trim();
     console.log('currentPath', this.currentPath);
     this.userId = localStorage.getItem('userId');
+    console.log('hvdshjshs', this.userId);
     this.org = localStorage.getItem('organisation');
     if (this.org) {
       this.organisation = JSON.parse(this.org);
@@ -44,11 +47,15 @@ export class DonorMessageToRejectComponent {
     email: any;
     dataToSend: any;
     name: any;
+    blood_group: any;
+    blood_quantity: any;
   } = {
     id: '',
     email: '',
     dataToSend: {},
     name: '',
+    blood_group: '',
+    blood_quantity: '',
   };
 
   rejectdonor: {
@@ -69,24 +76,34 @@ export class DonorMessageToRejectComponent {
         email: params['email'],
         dataToSend: JSON.parse(params['dataToSend']),
         name: params['donorName'],
+        blood_group: params['bloodGroup'],
+        blood_quantity: params['bloodQuantity'],
       };
       console.log('gkjjgfjg,', this.donor);
     });
     console.log('dataToSend in donor message ', this.donor.dataToSend);
     this.orgService
       .requestDonor(
-        userId,
+        this.userId,
         message,
         this.donor.email,
         this.donor.dataToSend,
         this.organisation,
-        this.donor.name
+        this.donor.name,
+        this.donor.blood_group,
+        this.donor.blood_quantity
       )
       .subscribe({
         next: (data: any) => {
           this.requestDonorData = data;
           this.router.navigate(['/org-dashboard']);
           console.log('requestDonorData:', this.requestDonorData);
+          this.showPopup = true;
+          this.popupMessage = `request sent successfully!`;
+          setTimeout(() => {
+            this.showPopup = false;
+          }, 2500);
+          return;
         },
         error: (err: any) => {
           console.error('error in requesting the donor', err);

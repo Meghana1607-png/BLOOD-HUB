@@ -8,7 +8,8 @@ import { ReceiverService } from 'src/app/receiver.service';
   styleUrls: ['./veiw-rec-form.component.css']
 })
 export class VeiwRecFormComponent {
-
+  showPopup: boolean = false; // Declare showPopup variable
+  popupMessage: string = '';
   receiver: any = null;
   // isLoading: boolean = true;
   errorMessage: string = '';

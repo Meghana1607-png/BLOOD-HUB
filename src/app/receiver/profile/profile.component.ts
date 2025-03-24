@@ -14,6 +14,8 @@ export class ProfileComponent {
   receiverForm: FormGroup;
   userId:any;
   profileData: any;
+  showPopup: boolean = false; // Declare showPopup variable
+  popupMessage: string = '';
 
   constructor(private fb: FormBuilder, private profile: ProfileService, private router: Router, private supabase:AuthService ) {
     this.receiverForm = this.fb.group({

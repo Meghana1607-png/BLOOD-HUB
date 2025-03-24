@@ -48,7 +48,7 @@ export class OrgListComponent {
         address: org.address,
         gender: org.gender,
         age: org.age,
-        bloodGroupData: JSON.parse(org.blood_groups),
+        bloodGroupData: JSON.stringify(org.blood_groups),
       },
     });
   }

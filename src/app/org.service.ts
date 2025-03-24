@@ -76,15 +76,19 @@ export class OrgService {
     donorEmail: any,
     data: any,
     organistaion: any,
-    donorName: any
+    donorName: any,
+    blood_group: any,
+    blood_quantity: any
   ): Observable<any> {
-    console.log('data in org.service', data, user, message, organistaion);
+    console.log('data in org.service',  user);
     return this.http.post(`${this.requestDonorapi}/${user}`, {
       data,
       message,
       donorEmail,
       organistaion,
       donorName,
+      blood_group,
+      blood_quantity,
     });
   }
 

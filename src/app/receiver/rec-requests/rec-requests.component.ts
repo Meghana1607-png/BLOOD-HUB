@@ -6,6 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./rec-requests.component.css']
 })
 export class RecRequestsComponent {
-
+  showPopup: boolean = false; // Declare showPopup variable
+  popupMessage: string = '';
   request:any[]=[]
 }

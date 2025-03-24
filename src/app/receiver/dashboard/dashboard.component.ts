@@ -19,15 +19,15 @@ export class DashboardComponent {
   // roles: any[];
   det:any=[];
   c_role:any;
+  showPopup: boolean = false; // Declare showPopup variable
+  popupMessage: string = '';
   menu = [
-    { path: 'admin/dashboard', label: 'dashboard', icon: 'pi pi-home' },
-    { path: 'receiver/view-rec', label: 'paitient-form-report ', icon: 'pi pi-globe' },
-    { path: 'receiver/vp', label: 'profile-details', icon: 'pi pi-id-card' },
+    { path: 'admin/dashboard', label: 'Home', icon: 'pi pi-home' },
+    { path: 'receiver/view-rec', label: 'Recent request ', icon: 'pi pi-globe' },
+    { path: 'receiver/rec-table', label: 'All requests', icon: 'pi pi-user-plus' },
     { path: 'receiver/rec-awareness', label: 'awareness', icon: 'pi pi-sitemap' },
-    { path: 'receiver/rec-table', label: 'receiverForms-table', icon: 'pi pi-user-plus' },
     // { path: 'admin/teams-table', label: 'teams', icon: 'pi pi-users' },
-    {path:'receiver/rec-form' ,label:'new form',}
-   
+     {path:'receiver/rec-form' ,label:'new form',}
   ]
 
   constructor(private router: Router, private activeroute: ActivatedRoute, private recform:ReceiverService ) {

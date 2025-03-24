@@ -201,6 +201,48 @@ app.get(
   }
 );
 
+app.put("/donor/setReceiverFalse", async (req, res) => {
+  console.log("hiiiii");
+
+  console.log("req.body.latestReceiver", req.body.latestReceiever);
+  try {
+    const { data: updatedData, error: updateError } = await supabase
+      .from("receivers")
+      .update({ latestReceiver: "false" })
+      .eq("userid", req.body.latestReceiever);
+
+    if (updateError) {
+      console.log(updateError);
+      return res.status(400).json({ error: updateError.message });
+    }
+    res.json(updatedData);
+  } catch (err) {
+    console.error("Unexpected error:", err);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
+app.put("/donor/setDonorFalse", async (req, res) => {
+  console.log("hiiiii");
+
+  console.log("req.body.latestDonor", req.body.latestDonor);
+  try {
+    const { data: updatedData, error: updateError } = await supabase
+      .from("donors")
+      .update({ latestDonor: "false" })
+      .eq("user_id", req.body.latestDonor);
+
+    if (updateError) {
+      console.log(updateError);
+      return res.status(400).json({ error: updateError.message });
+    }
+    res.json(updatedData);
+  } catch (err) {
+    console.error("Unexpected error:", err);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
 app.post("/receiverforminsert", async (req, res) => {
   console.log(" Received Request Body:", req.body);
 
@@ -208,15 +250,58 @@ app.post("/receiverforminsert", async (req, res) => {
     console.log(" req.body is EMPTY!");
     return res.status(400).json({ message: "No data received" });
   }
-  const { date, purpose, email,blood_group, blood_quatity, emergency ,userid,location, name} = req.body;
+  const {
+    date,
+    purpose,
+    email,
+    blood_group,
+    blood_quatity,
+    emergency,
+    userid,
+    location,
+    name,
+  } = req.body;
 
-  if (!date || !purpose || !blood_group ||! email || !blood_quatity || !emergency||!userid ||!location ||!name) {
-    console.log(" Missing fields:", { date, purpose, blood_group, email,blood_quatity, emergency,userid,location,name });
+  console.log("email", email);
+
+  if (
+    !date ||
+    !purpose ||
+    !blood_group ||
+    !email ||
+    !blood_quatity ||
+    !emergency ||
+    !userid ||
+    !location ||
+    !name
+  ) {
+    console.log(" Missing fields:", {
+      date,
+      purpose,
+      blood_group,
+      email,
+      blood_quatity,
+      emergency,
+      userid,
+      location,
+      name,
+    });
     return res.status(400).json({ message: "Missing required fields" });
   }
   try {
     const { data, error } = await supabase.from("receivers").insert([
-      {name:name, purpose:purpose, blood_group: blood_group, email: email,blood_quatity: blood_quatity, date: date, emergency: emergency,userid:userid,location:location }
+      {
+        name: name,
+        purpose: purpose,
+        blood_group: blood_group,
+        email: email,
+        blood_quatity: blood_quatity,
+        date: date,
+        emergency: emergency,
+        userid: userid,
+        location: location,
+        latestReceiver: "true",
+      },
     ]);
     if (error) throw error;
     res.status(200).json({ message: "Receiver form submitted", data });
@@ -228,7 +313,6 @@ app.post("/receiverforminsert", async (req, res) => {
 
 app.post("/donor/sendRequest", async (req, res) => {
   console.log("data in requestDonor", req.body);
-  console.log("email", req.body.email);
   try {
     const { data1, error } = await supabase.from("donorRequests").insert([
       {
@@ -265,6 +349,8 @@ app.post("/org/requestDonor/:id", async (req, res) => {
         status: data.status,
         donor_id: data.donor_id,
         message: message,
+        bloodGroup: req.body.blood_group,
+        bloodQuantity: req.body.blood_quantity,
       },
     ]);
     if (error) {
@@ -588,11 +674,12 @@ app.post("/donorforminsert", async (req, res) => {
             HealthIssues: req.body.health_issues,
             location: req.body.location,
             blood_quantity: req.body.blood_Quantity,
+            latestDonor: "true",
           },
         ]);
 
       if (insertError) {
-        console.error("Supabase Insert Error:", insertError);
+        console.log("Supabase Insert Error:", insertError);
         return res
           .status(500)
           .json({ message: "Failed to insert user", error: insertError });
@@ -745,6 +832,48 @@ app.get("/org/donors/approved/:id", async (req, res) => {
   }
 });
 
+app.get("/donor/fetchDonorDetails/:id", async (req, res) => {
+  const { id } = req.params;
+  try {
+    console.log("id in fetchDonorDetails - ", id);
+    const { data, error } = await supabase
+      .from("donors")
+      .select("*")
+      .eq("user_id", id)
+      .eq("latestDonor", "true");
+
+    if (error) {
+      console.log(error);
+      return res.status(400).json({ error: error.message });
+    }
+    res.json(data);
+  } catch (err) {
+    console.error("Unexpected error:", err);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
+app.get("/receiver/fetchReceiverDetails/:id", async (req, res) => {
+  const { id } = req.params;
+  try {
+    console.log("id in fetchReceiverDetails - ", id);
+    const { data, error } = await supabase
+      .from("receivers")
+      .select("*")
+      .eq("userid", id)
+      .eq("latestReceiver", "true");
+
+    if (error) {
+      console.log(error);
+      return res.status(400).json({ error: error.message });
+    }
+    res.json(data);
+  } catch (err) {
+    console.error("Unexpected error:", err);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
 app.get("/org/donors/donorrequests/:id", async (req, res) => {
   const { id } = req.params;
   try {
@@ -836,7 +965,7 @@ app.get("/org/DonorDetails/:id", async (req, res) => {
     const { data, error } = await supabase
       .from("donors")
       .select("*")
-      .eq("user_id", id);
+      .eq("donor_id", id);
     console.log("data", data);
     if (error) {
       console.log(error);
@@ -857,7 +986,7 @@ app.get("/org/ReceiverDetails/:id", async (req, res) => {
     const { data, error } = await supabase
       .from("receivers")
       .select("*")
-      .eq("userid", id);
+      .eq("recid", id);
 
     if (error) {
       console.log(error);

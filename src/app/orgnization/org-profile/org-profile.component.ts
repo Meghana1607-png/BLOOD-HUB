@@ -16,7 +16,7 @@ export class OrgProfileComponent implements OnInit {
   bloodGroupsArray: any[] = [];
   org: any;
   presentPath: any;
-  currentPath : any;
+  currentPath: any;
 
   // Error messages
   nameError: string = '';
@@ -35,6 +35,7 @@ export class OrgProfileComponent implements OnInit {
     console.log('currentPath', this.currentPath);
     this.userId = localStorage.getItem('userId');
     this.org = localStorage.getItem('organization');
+    console.log('organisation', this.org);
   }
 
   ngOnInit(): void {

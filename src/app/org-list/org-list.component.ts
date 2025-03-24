@@ -5,40 +5,60 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-org-list',
   templateUrl: './org-list.component.html',
-  styleUrls: ['./org-list.component.css']
+  styleUrls: ['./org-list.component.css'],
 })
 export class OrgListComponent {
+  data: any;
+  showPopup: boolean = false; // Declare showPopup variable
+  popupMessage: string = '';
 
-  data:any
-  constructor(private supabase:OrgService, private router:Router){
-
+  constructor(private supabase: OrgService, private router: Router) {
     this.fetchorg();
   }
-  organizations :any[]= []
-    fetchorg() {
+  organizations: any[] = [];
+  fetchorg() {
     this.supabase.fetchorgform(1).subscribe({
       next: (response) => {
         if (response.error) {
           console.error('Error fetching organizations:', response.error);
         } else if (response.data) {
-          console.log(response.data)
+          console.log(response.data);
           this.organizations = response.data;
-          console.log('Organizations fetched successfully:', this.organizations);
+          console.log(
+            'Organizations fetched successfully:',
+            this.organizations
+          );
         } else {
           console.warn('No data received');
         }
       },
       error: (error) => {
-        console.error('Failed to fetch organizations:', error);
+        this.showPopup = true;
+      this.popupMessage = `Failed to fetch organizations.`;
+      setTimeout(() => {
+        this.showPopup = false;
+      }, 2500);
+      return;
+        console.error('', error);
       },
     });
   }
-  
-  ngOnInit(){}
+
+  ngOnInit() {}
 
   viewDetails(org: any): void {
-  console.log("org",org)
-this.router.navigate(['/view_org'], {queryParams:{id:org.userId, email:org.email, phone:org.phone,name:org.name,address:org.address, gender:org.gender, age:org.age, bloodGroupData: org.blood_groups
-}})
+    console.log('org', org);
+    this.router.navigate(['/view_org'], {
+      queryParams: {
+        id: org.userId,
+        email: org.email,
+        phone: org.phone,
+        name: org.name,
+        address: org.address,
+        gender: org.gender,
+        age: org.age,
+        bloodGroupData: org.blood_groups,
+      },
+    });
   }
 }

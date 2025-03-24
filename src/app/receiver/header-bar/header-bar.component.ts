@@ -4,13 +4,12 @@ import { filter } from 'rxjs';
 import { ReceiverService } from 'src/app/receiver.service';
 
 @Component({
-  selector: 'app-rec-header',
-  templateUrl: './rec-header.component.html',
-  styleUrls: ['./rec-header.component.css']
+  selector: 'app-header-bar',
+  templateUrl: './header-bar.component.html',
+  styleUrls: ['./header-bar.component.css']
 })
-export class RecHeaderComponent {
-
-  showDropdown = false;
+export class HeaderBarComponent {
+ showDropdown = false;
 
  is_slidebar: boolean;
   isclick:boolean=false;
@@ -18,13 +17,14 @@ export class RecHeaderComponent {
   // roles: any[];
   det:any=[];
   c_role:any;
+  showConfirmLogoutPopup: any;
   menu = [
-    { path: 'admin/dashboard', label: 'Home', icon: 'pi pi-home' },
+    { path: 'rec-dashboard', label: 'Home', icon: 'pi pi-home' },
     { path: 'receiver/view-rec', label: 'Recent request ', icon: 'pi pi-globe' },
     { path: 'receiver/rec-table', label: 'All requests', icon: 'pi pi-user-plus' },
     { path: 'receiver/rec-awareness', label: 'awareness', icon: 'pi pi-sitemap' },
     // { path: 'admin/teams-table', label: 'teams', icon: 'pi pi-users' },
-    // {path:'receiver/rec-form' ,label:'new form',}
+     {path:'receiver/rec-form' ,label:'new form',}
   ]
 
   constructor(private router: Router, private activeroute: ActivatedRoute, private recform:ReceiverService ) {
@@ -78,5 +78,20 @@ export class RecHeaderComponent {
 
     this.showDropdown = false; 
 // Close dropdown after selection
+  }
+  logout() {
+    this.showConfirmLogoutPopup = !this.showConfirmLogoutPopup;
+  }
+
+  confirmLogout() {
+    localStorage.removeItem('access_token');
+    localStorage.removeItem('userId');
+    this.showConfirmLogoutPopup = false;
+    localStorage.removeItem('userId');
+    this.router.navigate(['/']);
+  }
+
+  cancelLogout() {
+    this.showConfirmLogoutPopup = false;
   }
 }

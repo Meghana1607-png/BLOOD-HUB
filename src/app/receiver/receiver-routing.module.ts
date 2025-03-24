@@ -10,31 +10,33 @@ import { RecRequestsComponent } from './rec-requests/rec-requests.component';
 import { VeiwRecFormComponent } from './veiw-rec-form/veiw-rec-form.component';
 import { RecFormTableComponent } from './rec-form-table/rec-form-table.component';
 
-const routes: Routes = [{ path: '', component: ReceiverComponent },
-{
-  path: 'rprofile',
-  component: ProfileComponent
-},
-{
-  path: 'rec-dashboard',
-  component: DashboardComponent
-},
-{
-  path: 'rec-form',
+const routes: Routes = [
+  { path: '', component: ReceiverComponent },
+  {
+    path: 'rprofile',
+    component: ProfileComponent,
+  },
+  {
+    path: 'rec-dashboard',
+    component: DashboardComponent,
+  },
+  {
+    path: 'rec-form',
 
-  component: ReceiverFormComponent
-},{
-  path:'rec-table',component:RecFormTableComponent
-},
-{path:'vp',component:ViewProfileComponent},
-{ path: 'rec-awareness', component: RecAwarenessComponent },
-{path:'rec-req',component:RecRequestsComponent},
-{path:'view-rec',component:VeiwRecFormComponent}
-
+    component: ReceiverFormComponent,
+  },
+  {
+    path: 'rec-table',
+    component: RecFormTableComponent,
+  },
+  { path: 'viewProfile', component: ViewProfileComponent },
+  { path: 'rec-awareness', component: RecAwarenessComponent },
+  { path: 'rec-req', component: RecRequestsComponent },
+  { path: 'view-rec', component: VeiwRecFormComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class ReceiverRoutingModule { }
+export class ReceiverRoutingModule {}

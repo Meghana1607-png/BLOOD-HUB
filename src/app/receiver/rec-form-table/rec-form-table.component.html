@@ -1,3 +1,15 @@
+<div class="h-dvh w-dvh flex">
+  <app-header-bar></app-header-bar>
+  <!-- Header -->
+     <!-- Main Content -->
+  <div class="mt-24 w-full ml-14 transition-all duration-300">
+    <!-- Popup -->
+    <div
+      class="fixed z-10 top-150 text-2xl left-100 w-full py-2 bg-red-600 text-white text-center"
+      *ngIf="showPopup"
+    >
+      {{ popupMessage }}
+    </div>
 <div class="max-w-4xl mx-auto p-6 bg-white shadow-lg rounded-2xl border border-gray-300">
     <h2 class="text-xl font-semibold text-center text-red-600 mb-4">
       Recipient Form Details
@@ -43,4 +55,6 @@
       <p class="text-red-500 text-center mt-4">No recipient forms found.</p>
     </ng-template>
   </div>
+</div>
+</div>
   

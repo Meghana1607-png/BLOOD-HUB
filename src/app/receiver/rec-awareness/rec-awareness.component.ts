@@ -6,6 +6,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./rec-awareness.component.css']
 })
 export class RecAwarenessComponent {
+  showPopup: boolean = false; // Declare showPopup variable
+  popupMessage: string = '';
 
   bloodGroupCompatibilityReceiver = [
     { receiver: 'O-', donor: 'O-, A-, B-, AB-' },

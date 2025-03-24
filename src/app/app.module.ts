@@ -13,7 +13,7 @@ import { SignupComponent } from './signup/signup.component';
 import { SigninComponent } from './signin/signin.component';
 import { DonorSigninComponent } from './donor-signin/donor-signin.component';
 import { SearchComponentComponent } from './search-component/search-component.component';
-
+import { HeaderBarComponent } from './header-bar/header-bar.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +24,7 @@ import { SearchComponentComponent } from './search-component/search-component.co
     SigninComponent,
     DonorSigninComponent,
     SearchComponentComponent,
-
+    HeaderBarComponent,
   ],
   imports: [
     BrowserModule,

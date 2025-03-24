@@ -8,6 +8,8 @@ import { ProfileService } from 'src/app/profile.service';
   styleUrls: ['./view-profile.component.css']
 })
 export class ViewProfileComponent {
+  showPopup: boolean = false; // Declare showPopup variable
+  popupMessage: string = '';
   users: any[] = [];
   isEditing: boolean = false;
   editableUser: any = {};

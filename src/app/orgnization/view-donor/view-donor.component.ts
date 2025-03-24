@@ -111,12 +111,14 @@ export class ViewDonorComponent {
 
   requestDonor(userId: string): void {
     const dataToSendJson = JSON.stringify(this.dataToSend);
-    this.router.navigate(['/org/donor/MessageToRequest'], {
+    console.log('this.donorBloodgroup', this.donorDetails[0].bloodGroup);
+    this.router.navigate(['/org/donor/requestBlood'], {
       queryParams: {
         userid: userId,
         email: this.donor.email,
         dataToSend: dataToSendJson,
         donorName: this.donorDetails[0].Name,
+        donorBloodGroup: this.donorDetails[0].BloodGroup,
       },
     });
   }

@@ -25,7 +25,10 @@ export class DonorViewOrgComponent {
   email: any;
   donorData: any;
   pasredDonorData: any;
-
+  donorDetails: any;
+  showPopup: boolean = false; // Declare showPopup variable
+  popupMessage: string = '';
+  bloodGroupDetails: any;
   constructor(
     private supabase: OrgService,
     private auth: AuthService,
@@ -40,7 +43,7 @@ export class DonorViewOrgComponent {
     this.selectedOrgId = this.supabase.fetchorgform('id');
     this.userId = this.user.form('userId');
     this.userId = localStorage.getItem('authId');
-    this.userId = localStorage.getItem('userId');
+    this.userId = localStorage.getItem('donorId');
     this.donorData = localStorage.getItem('donorData');
     this.pasredDonorData = JSON.parse(this.donorData);
     console.log('donoaData', this.pasredDonorData);
@@ -60,8 +63,13 @@ export class DonorViewOrgComponent {
         bloodDetails: params['bloodGroupData'],
       };
     });
+    console.log('bloodGroups ', this.organization.bloodDetails);
 
-    console.log('bloodgroupdata', this.organization.org_id);
+    this.bloodGroupDetails = JSON.parse(
+      JSON.parse(this.organization.bloodDetails)
+    );
+
+    console.log('bloodgroupdata', this.bloodGroupDetails);
   }
 
   organization: {
@@ -70,7 +78,7 @@ export class DonorViewOrgComponent {
     email: string;
     phone: string;
     address: string;
-    bloodDetails: any[];
+    bloodDetails: any;
   } = {
     org_id: '',
     name: '',
@@ -108,10 +116,22 @@ export class DonorViewOrgComponent {
       console.error('User not logged in');
     }
   }
+
   async requestBlood() {
+    console.log('gjasjh', this.userId);
+    this.donorService.fetchDonorDetails(this.userId).subscribe({
+      next: (data: any) => {
+        this.donorDetails = data;
+        console.log('donorDetails', this.donorDetails);
+      },
+      error: (err: any) => {
+        console.error('Error fetching donor', err);
+      },
+    });
+
     const requestData = {
       org_id: this.organization.org_id,
-      userid: this.pasredDonorData.userid,
+      userid: this.donorDetails[0].donor_id,
       email: this.pasredDonorData.email,
       status: 'pending',
       created_at: new Date().toISOString(), // Ensure created field is properly set
@@ -121,8 +141,14 @@ export class DonorViewOrgComponent {
 
     this.donorService.submitRequest(requestData).subscribe({
       next: (data: any) => {
+        this.showPopup = true;
+        this.popupMessage = `Request sent successfully!`;
+        setTimeout(() => {
+          this.showPopup = false;
+        }, 2500);
+        alert('request sent succesfully!');
         this.router.navigate(['/donor/dashboard']);
-        console.log('Request sent successfully!');
+        return;
       },
       error: (err: any) => {
         this.router.navigate(['/donor/dashboard']);

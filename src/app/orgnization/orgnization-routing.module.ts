@@ -23,6 +23,7 @@ import { FeedbacksComponent } from './feedbacks/feedbacks.component';
 import { IndividualFeedbackComponent } from './individual-feedback/individual-feedback.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { DonorRequestsComponent } from './donor-requests/donor-requests.component';
+import { DonorFormRequestComponent } from './donor-form-request/donor-form-request.component';
 
 const routes: Routes = [
   { path: 'signin', component: SigninComponent },
@@ -63,6 +64,9 @@ const routes: Routes = [
     path: 'org/feedbacks/individualFeedback',
     component: IndividualFeedbackComponent,
   },
+  {
+    path: 'org/donor/requestBlood', component:DonorFormRequestComponent
+  }
 ];
 
 @NgModule({

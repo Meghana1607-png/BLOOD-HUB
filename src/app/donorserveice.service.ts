@@ -13,6 +13,8 @@ export class DonorserveiceService {
   private fetchDonorApi = 'http://localhost:3000/fetchDonor';
   private donorinserturl = 'http://localhost:3000/donorforminsert';
   private sendRequest = 'http://localhost:3000/donor/sendRequest';
+  private setFalseApi = 'http://localhost:3000/donor/setDonorFalse';
+  private fetchDonorDetailsApi = 'http://localhost:3000/donor/fetchDonorDetails';
   private supabase: SupabaseClient;
   constructor(private http: HttpClient) {
     this.supabase = createClient(
@@ -25,15 +27,23 @@ export class DonorserveiceService {
     return this.http.post(this.apiUrl, donor);
   }
 
-    submitRequest(formData: any): Observable<any> {
-      return this.http.post(`${this.sendRequest}`,{formData});
-    }
+  submitRequest(formData: any): Observable<any> {
+    return this.http.post(`${this.sendRequest}`, { formData });
+  }
 
   submitDonorForm(formData: any): Observable<any> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     return this.http.post(this.donorinserturl, JSON.stringify(formData), {
       headers,
     });
+  }
+
+  fetchDonorDetails(userId : any): Observable<any> {
+    return this.http.get(`${this.fetchDonorDetailsApi}/${userId}`);
+  }
+
+  falseDonor(latestDonor: any): Observable<any> {
+    return this.http.put(`${this.setFalseApi}`, { latestDonor });
   }
 
   userFetch(userId: any): Observable<any> {
@@ -66,7 +76,6 @@ export class DonorserveiceService {
   get auth() {
     return this.supabase.auth;
   }
-
 
   async getuser() {
     try {

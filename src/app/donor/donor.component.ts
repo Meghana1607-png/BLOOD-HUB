@@ -11,87 +11,15 @@ import { DonorserveiceService } from '../donorserveice.service';
   styleUrls: ['./donor.component.css'],
 })
 export class DonorComponent {
-  // user:any=null;
-  //   donorForm: FormGroup;
-  //   bloodGroups = ['A+', 'A-', 'B+', 'B-', 'O+', 'O-', 'AB+', 'AB-'];
-
-  //   constructor(private fb: FormBuilder,private donor:DonorserveiceService) {
-  //     this.donorForm = this.fb.group({
-  //       Name: ['', Validators.required],
-  //       Age: ['', [Validators.required, Validators.min(18), Validators.max(65)]],
-  //       BloodGroup: ['', Validators.required],
-  //       HealthIssues: ['',Validators.required],
-  //       LastDonatedDate: ['',Validators.required],
-  //       Mobile_Number: ['',Validators.required],
-  //       Gender: ['',Validators.required],
-  //       location: ['',Validators.required],
-  //       email: ['',Validators.required],
-  //     });
-  //     this.user= localStorage.getItem('authId')
-
-  // }
-  // get f() {
-  //   return this.donorForm.controls;
-  // }
-
-  //  async onSubmit() {
-  //   console.log("button clicked")
-  //   try {
-  //     // Retrieve user ID from local storage
-  //     const userId = localStorage.getItem('authId'); // 👈 Get stored auth ID
-
-  //     if (!userId) {
-  //       console.error("No authId found in localStorage.");
-  //       alert("No user ID found. Please log in again.");
-  //       return;
-  //     }
-
-  //     console.log("Retrieved User ID:", userId);
-
-  //   //   // Fetch user details from the donors table
-  //   //   this.user = await this.donor.profilefetch(userId); // Ensure `profilefetch` queries donors table
-
-  //   //   if (!this.user) {
-  //   //     console.error("User not found in donors table.");
-  //   //     alert("No donor profile found.");
-  //   //   } else {
-  //   //     console.log("Fetched User:", this.user);
-  //   //   }
-  //   // } catch (error) {
-  //   //   console.error("Error fetching user:", error);
-  //   // }
-  //   if (this.donorForm) {
-  //     console.log("Form Values:", this.donorForm.value);
-  //     console.log("Form Valid:", this.donorForm.valid);
-
-  //     if (this.donorForm.valid) {
-  //       console.log("Donor Form Submitted", this.donorForm.value)
-  //       this.donor.Donorinsert(this.donorForm.value).subscribe({
-  //         next: (res: any) => {
-  //           console.log("success:", res)
-  //           alert(res.message);
-  //           this.donorForm.reset();
-  //         },
-  //         error: (error: any) => {
-  //           console.error('Error submitting form:', error);
-  //           alert('An error occurred while submitting the form. Please try again later.');
-  //         }
-  //       });
-  //     } else {
-  //       alert("Please fill all required fields!");
-  //     }
-  //     }
-  // }
-  // catch (error) {
-  //      console.error("Error fetching user:", error);
-  //    }
-  //  }
-
   organizations: any[] = [];
   data1: any;
   org: any;
   userId: any;
   donorForm: FormGroup;
+  latestDonor = 'TRUE';
+  donorData: any;
+  showPopup: any;
+  popupMessage: any;
 
   constructor(
     private fb: FormBuilder,
@@ -100,50 +28,55 @@ export class DonorComponent {
     private router: Router,
     private donorService: DonorserveiceService
   ) {
-    this.userId = this.donorForm = this.fb.group({
-      name: ['', [Validators.required, Validators.minLength(3)]],
-      email: ['', [Validators.required, Validators.email]],
+    this.donorForm = this.fb.group({
       age: ['', [Validators.required, Validators.min(18), Validators.max(100)]],
       gender: ['', Validators.required],
       blood_Quantity: ['', Validators.required],
       blood_group: ['', Validators.required],
-      phone: [
-        '',
-        [
-          Validators.required,
-          Validators.minLength(10),
-          Validators.maxLength(10),
-        ],
-      ],
       date: ['', Validators.required],
       health_issues: ['', Validators.required],
-      location: ['', Validators.required],
     });
     this.userId = localStorage.getItem('donorId');
+    this.donorData = localStorage.getItem('donorData');
+    console.log('donorData', JSON.parse(this.donorData));
   }
 
   get f() {
     return this.donorForm.controls;
   }
 
-  async onSubmit() {
+  async onSubmit(latestDonor: any) {
+    console.log('button clicked');
     if (this.donorForm.valid) {
       const userFormData = {
         userid: this.userId,
+        name: JSON.parse(this.donorData).name,
+        phone: JSON.parse(this.donorData).phno,
+        location: JSON.parse(this.donorData).address,
+        email: JSON.parse(this.donorData).email,
         ...this.donorForm.value,
       };
 
-      this.donorService.submitDonorForm(userFormData).subscribe({
+      console.log(latestDonor);
+
+      this.donorService.falseDonor(this.userId).subscribe({
         next: (response: any) => {
-          console.log('User insertion success');
-          console.log(response.message);
-          this.router.navigateByUrl('/donor/org-list');
-          this.donorForm.reset();
+          this.donorService.submitDonorForm(userFormData).subscribe({
+            next: (response: any) => {
+              console.log('User insertion success');
+              console.log(response.message);
+              this.router.navigateByUrl('/donor/org-list');
+              this.donorForm.reset();
+            },
+            error: (error: any) => {
+              console.log('Form submission failed!');
+              console.error('Error submitting the form:', error.message);
+              console.log('An error occurred while submitting the form.');
+            },
+          });
         },
         error: (error: any) => {
-          console.log('Form submission failed!');
-          console.error('Error submitting the form:', error.message);
-          console.log('An error occurred while submitting the form.');
+          console.log('error while setting donor as false');
         },
       });
     }

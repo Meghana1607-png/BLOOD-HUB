@@ -18,10 +18,10 @@ export class DonorserveiceService {
   private supabase: SupabaseClient;
   constructor(private http: HttpClient) {
     this.supabase = createClient(
-      'https://esuzqpwibfnycwmeirtg.supabase.co',
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVzdXpxcHdpYmZueWN3bWVpcnRnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzQ5NjA1MTQsImV4cCI6MjA1MDUzNjUxNH0.FUL9viBXkN2Q44hhdFKPj8uKBT0SkJqcSfbjPV2oExc'
-    );
+'https://esuzqpwibfnycwmeirtg.supabase.co',   
+'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVzdXpxcHdpYmZueWN3bWVpcnRnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzQ5NjA1MTQsImV4cCI6MjA1MDUzNjUxNH0.FUL9viBXkN2Q44hhdFKPj8uKBT0SkJqcSfbjPV2oExc'    );
   }
+
   Donorinsert(donor: any): Observable<any> {
     console.log('Sending data to API:', donor);
     return this.http.post(this.apiUrl, donor);
@@ -93,16 +93,25 @@ export class DonorserveiceService {
   }
   async profilefetch(userId: string): Promise<any> {
     const { data, error } = await this.supabase
-      .from('donors')
+      .from('users')
       .select('*')
-      .eq('user_id', userId)
-      .limit(1)
-      .single();
-
+      .eq('userid', userId)
+      .limit(1);
+  
+    console.log("Raw Supabase Response:", { data, error }); 
+  
     if (error) {
-      console.error('Error fetching donor profile:', error);
+      console.error("Error fetching donor profile:", error);
       return null;
     }
-    return data;
+    return data.length > 0 ? data[0] : null; 
   }
+  
+  
+  async updateUser(userid: string, updatedData: any): Promise<any> {
+    if (!userid) {
+      throw new Error("User ID is required for updating profile.");
+    }
+  }
+  
 }

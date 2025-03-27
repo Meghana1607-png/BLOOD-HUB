@@ -43,7 +43,7 @@ export class ReceiverService {
 
   submitReceiverForm(formData: any): Observable<any> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    console.log('📡 Calling Supabase API to insert:', formData);
+    console.log('Calling Supabase API to insert:', formData);
 
     return this.http.post(this.apiurl, JSON.stringify(formData), { headers });
   }
